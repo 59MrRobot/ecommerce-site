@@ -41,7 +41,6 @@ export const Content: React.FC<Props> = React.memo(
 
       const selectedSection = sections.find(section =>
         section.content.title.toLowerCase() === selectedSectionTitle);
-        console.log(selectedSection)
   
       if (selectedSection) {
         setCategories(selectedSection.children.find(child =>

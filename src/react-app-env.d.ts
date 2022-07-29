@@ -77,7 +77,7 @@ interface Category {
   //   webUrl: string;
   //   appUrl: string;
   // },
-  // children: [];
+  children: Children[];
 }
 
 interface Cat {
@@ -86,4 +86,8 @@ interface Cat {
     title: string;
   },
   children: Category[];
+}
+
+interface Children extends Category {
+
 }

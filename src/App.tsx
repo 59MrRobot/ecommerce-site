@@ -11,8 +11,6 @@ const App: React.FC = () => {
   const [search, setSearch] = useState('');
   const [selectedSectionTitle, setSelectedSectionTitle] = useState<string | undefined>('men');
 
-  console.log(selectedSectionTitle);
-
   return (
     <AppContext.Provider value={{
       search,
@@ -51,6 +49,7 @@ const App: React.FC = () => {
 
             <section className="col">
               Products
+              {search}
             </section>
           </div>
         </div>
