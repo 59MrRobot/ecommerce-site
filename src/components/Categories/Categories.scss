@@ -1,0 +1,20 @@
+@import '../../styles/vars';
+
+.categories {
+  height: 32px;
+  background-color: $green-blue;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__button {
+    padding: 0;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    background-color: transparent;
+  }
+}
