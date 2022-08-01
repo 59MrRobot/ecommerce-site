@@ -1,43 +1,48 @@
 @import '../../styles/vars';
 
-.categories-list {
-  display: flex;
-  justify-content: center;
-
-  width: 100vw;
-
-  background-color: $green-blue;
-
-  &__wrapper {
+.categories {
+  &-list {
     display: flex;
-    align-items: center;
+    justify-content: center;
+  
+    width: 100vw;
+  
+    background-color: $green-blue;
 
-    max-width: 1300px;
-  }
-
-  &__button {
-    padding: 16px 8px;
-    min-width: 50px;
-    font-size: 14px;
-    color: #fff;
-    border: none;
-    background-color: transparent;
-
-    &:hover {
-      background-color: $medium-purple;
+    &__wrapper {
+      display: flex;
+      align-items: center;
+  
+      max-width: 1300px;
     }
 
-    &--special {
-      background-color: $space-cadet;
+    &__button {
+      padding: 16px 8px;
+      min-width: 50px;
+      font-size: 14px;
+      color: #fff;
+      border: none;
+      background-color: transparent;
+  
+      &:hover {
+        background-color: $medium-purple;
+      }
+  
+      &--special {
+        background-color: $space-cadet;
+      }
     }
   }
-}
 
-.category {
-  height: 200px;
-  padding: 16px;
-  &__wrapper {
-    display: flex;
-    flex-direction: column;
+  &__card {
+    padding: 16px;
+
+    &-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+  
+      max-width: 1136px;
+      margin: 0 auto;
+    }
   }
 }

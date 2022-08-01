@@ -10,11 +10,18 @@ import { Filters } from './components/Filters';
 const App: React.FC = () => {
   const [search, setSearch] = useState('');
   const [selectedSectionTitle, setSelectedSectionTitle] = useState<string | undefined>('men');
+  const [selectedCategoryId, setSelectedCategoryId] = useState(0);
+
+  const handleCategorySelection = (categoryId: number) => {
+    setSelectedCategoryId(categoryId);
+  }
 
   return (
     <AppContext.Provider value={{
       search,
       selectedSectionTitle,
+      selectedCategoryId,
+      handleCategorySelection,
     }}>
       <div className="app">
         <Header />

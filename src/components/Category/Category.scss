@@ -1,0 +1,43 @@
+@import '../../styles/vars';
+
+.category {
+  display: flex;
+  flex-direction: column;
+
+  border-left: 1px solid $space-cadet;
+  padding-left: 16px;
+
+  &:first-child {
+    border: none;
+    padding: 0;
+  }
+
+  &__title {
+    width: max-content;
+    border-bottom: 2px solid $space-cadet;
+
+    font-size: 16px;
+    font-weight: 700;
+    color: $space-cadet;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    height: 325px;
+    // width: max-content;
+
+    font-size: 14px;
+  }
+
+  &__link {
+    color: $green-blue;
+    text-decoration: none;
+  }
+}

@@ -43,19 +43,18 @@ interface Section {
   //   webLargeStyleType: string;
   //   mobileStyleType: string;
   // },
-  // link: {
+  link: {
   //   linkType: string;
   //   brandSectionAlias: string | null,
-  //   categoryId: string | null,
+    categoryId: null,
   //   webUrl: string;
   //   appUrl: string | null
-  // },
+  },
   children: Cat[];
 }
 
 interface Category {
   id: string;
-  // alias: null,
   type: string;
   // channelExclusions: [],
   // webLargePriority: number,
@@ -89,5 +88,9 @@ interface Cat {
 }
 
 interface Children extends Category {
+  link: Link | null;
+}
 
+interface Link {
+  categoryId: number | null;
 }

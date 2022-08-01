@@ -1,31 +1,48 @@
-import React, { Children, useState } from 'react';
+import React, { Children, useRef, useState } from 'react';
 import './CategoriesList.scss';
 import cn from 'classnames';
+
+import gsap from 'gsap';
+import { Category } from '../Category';
 
 interface Props {
   categories?: Category[];
 }
 
-const cats = ['SHOP BY PRODUCT', 'SHOP BY EDIT', 'SHOP BY BODY FIT', 'NEW PRODUCTS', 'NEW EDITS', 'SHOP BY OCCASSION', 'SHOP BY COLOR', 'SHOP BY BRAND', 'SHOP BY ACTIVITY', 'PLUS SIZE', 'TALL', 'TOP BRANDS']
+const cats = ['SHOP BY PRODUCT', 'SHOP BY EDIT', 'SHOP BY BODY FIT', 'NEW PRODUCTS', 'NEW EDITS', 'SHOP BY OCCASSION', 'SHOP BY COLOR', 'SHOP BY BRAND', 'SHOP BY ACTIVITY', 'PLUS SIZE', 'TALL', 'TOP BRANDS', "WHAT TO WEAR", "FIND YOUR FIT AND LENGTH", "TRENDING NOW"]
 
 export const CategoriesList: React.FC<Props> = ({ categories }) => {
-  const [children, setChildren] = useState<Children[]>([]);
-  const [hoveredCategory, setHoveredCategory] = useState<Category>();
+  const [subCategories, setSubCategories] = useState<Children[]>([]);
+  const [hoveredCategory, setHoveredCategory] = useState<Category | null>(null);
 
-  const filteredChildren = children.filter(child => {
+  const cat = useRef<HTMLDivElement | null>(null);
+
+  const filteredSubCategories = subCategories.filter(subCategory => {
+    if (hoveredCategory?.content.title === 'Summer' && 
+    subCategory.content.title === 'TRENDING') {
+      return subCategory;
+    }
+
     return cats.some(cat => {
       if ((hoveredCategory?.content.title === 'Shoes' || 
-      hoveredCategory?.content.title === 'Accessories' || 
-      hoveredCategory?.content.title === 'Face + Body') && cat === 'NEW EDITS') {
+        hoveredCategory?.content.title === 'Accessories' || 
+        hoveredCategory?.content.title === 'Face + Body' ||
+        hoveredCategory?.content.title === 'Outlet') && cat === 'NEW EDITS') {
         return 0;
       }
 
-      return cat === child.content.title.toUpperCase();
+      if (hoveredCategory?.content.title === 'Outlet' && 
+        cat.toLowerCase() === 'shop by body fit') {
+        return 0;
+        }
+
+      return cat === subCategory.content.title.toUpperCase();
     })
   });
+  
 
   return (
-    <>
+    <div className="categories">
       <nav className="categories-list">
         <div className="categories-list__wrapper">
           {categories?.map(category => {
@@ -39,9 +56,19 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
                     {'categories-list__button--special': category.content.title === 'Sale' || category.content.title === 'Outlet'}
                   )}
                   onMouseEnter={() => {
-                    setChildren(category.children);
+                    setSubCategories(category.children);
                     setHoveredCategory(category);
+                    gsap.to(cat.current, {
+                      display: 'unset',
+                      duration: 0,
+                    })
                   }}
+                  // onMouseLeave={() => {
+                  //   gsap.to(cat.current, {
+                  //     display: 'none',
+                  //     duration: 0,
+                  //   })
+                  // }}
                 >
                   {category.content.title.toUpperCase()}
                 </button>
@@ -51,13 +78,29 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
           })}
         </div>
       </nav>
-      <div className="category">
-        <div className="category__wrapper">
-          {filteredChildren.map(child => (
-            <p key={child.id}>{child.content.title}</p>
+
+      <div
+        className="categories__card"
+        ref={cat}
+        onMouseEnter={() => {
+          gsap.to(cat.current, {
+            display: 'unset',
+            duration: 0,
+          })
+        }}
+        onMouseLeave={() => {
+          gsap.to(cat.current, {
+            display: 'none',
+            duration: 0,
+          })
+        }}
+      >
+        <div className="categories__card-wrapper">
+          {filteredSubCategories.map(subCategory => (
+            <Category subCategory={subCategory} />
           ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }
