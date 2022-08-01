@@ -94,3 +94,38 @@ interface Children extends Category {
 interface Link {
   categoryId: number | null;
 }
+
+interface Product {
+  id: number;
+  name: string;
+  price: {
+    current: {
+      value: number;
+      text: string;
+    },
+    previous: {
+      // value: null,
+      text: string;
+    },
+  rrp: {
+      // value: null,
+      text: string;
+    },
+    isMarkedDown: boolean,
+    isOutletPrice: boolean,
+    currency: string;
+  },
+  colour: string;
+  colourWayId: number;
+  brandName: string;
+  hasVariantColours: boolean,
+  hasMultiplePrices: boolean,
+  // groupId: null,
+  productCode: number;
+  productType: string;
+  url: string;
+  imageUrl: string;
+  // videoUrl: null,
+  isSellingFast: boolean,
+  // sponsoredCampaignId: null
+}

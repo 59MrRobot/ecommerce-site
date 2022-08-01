@@ -17,6 +17,8 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
 
   const cat = useRef<HTMLDivElement | null>(null);
 
+  // const { handleCategorySelectionTitle } = useContext(AppContext);
+
   const filteredSubCategories = subCategories.filter(subCategory => {
     if (hoveredCategory?.content.title === 'Summer' && 
     subCategory.content.title === 'TRENDING') {
@@ -39,7 +41,13 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
       return cat === subCategory.content.title.toUpperCase();
     })
   });
-  
+
+  const handleCategoryCardClose = () => {
+    gsap.to(cat.current, {
+      display: 'none',
+      duration: 0,
+    })
+  }
 
   return (
     <div className="categories">
@@ -97,7 +105,12 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
       >
         <div className="categories__card-wrapper">
           {filteredSubCategories.map(subCategory => (
-            <Category subCategory={subCategory} />
+            <Category
+              key ={subCategory.id}
+              hoveredCategoryTitle={hoveredCategory?.content.title!}
+              subCategory={subCategory}
+              handleCategoryCardClose={handleCategoryCardClose}
+            />
           ))}
         </div>
       </div>

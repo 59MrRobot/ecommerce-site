@@ -1,0 +1,8 @@
+.main-content {
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1130px;
+    margin: 0 auto;
+  }
+}

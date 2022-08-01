@@ -5,6 +5,10 @@ interface Context {
   selectedSectionTitle: string | undefined;
   selectedCategoryId: number;
   handleCategorySelection: (categoryId: number) => void;
+  selectedCategoryTitle: string,
+  handleCategorySelectionTitle: (categoryTitle: string) => void;
+  selectedChildTitle: string,
+  handleChildSelectionTitle: (childTitle: string) => void;
 }
 
 export const AppContext = React.createContext<Context>({
@@ -12,4 +16,8 @@ export const AppContext = React.createContext<Context>({
   selectedSectionTitle: 'men',
   selectedCategoryId: 0,
   handleCategorySelection: () => {},
+  selectedCategoryTitle: '',
+  handleCategorySelectionTitle: () => {},
+  selectedChildTitle: '',
+  handleChildSelectionTitle: () => {},
 });

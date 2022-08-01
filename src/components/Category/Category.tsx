@@ -5,10 +5,22 @@ import './Category.scss';
 
 interface Props {
   subCategory: Children;
+  hoveredCategoryTitle: string;
+  handleCategoryCardClose: () => void;
 }
 
-export const Category: React.FC<Props> = ({ subCategory }) => {
-  const { handleCategorySelection } = useContext(AppContext);
+export const Category: React.FC<Props> = ({ 
+  subCategory, 
+  hoveredCategoryTitle, 
+  handleCategoryCardClose,
+}) => {
+  const {
+    selectedSectionTitle,
+    handleCategorySelection, 
+    selectedCategoryTitle,
+    handleChildSelectionTitle,
+    handleCategorySelectionTitle,
+  } = useContext(AppContext);
 
   return (
     <div className="category">
@@ -23,12 +35,19 @@ export const Category: React.FC<Props> = ({ subCategory }) => {
         {subCategory.children.map(child => (
           <li key={child.id} >
             <Link 
-              to={`${child.content.title}`}
+              to={`/${selectedSectionTitle}/${selectedCategoryTitle.toLowerCase().split(' ').join('_')}/${child.content.title.toLowerCase().split(' ').join('-')}`}
               className="category__link"
               onClick={() => {
                 if (child.link && child.link.categoryId) {
-                  handleCategorySelection(child.link.categoryId)
+                  handleCategorySelection(child.link.categoryId);
+                  handleChildSelectionTitle(child.content.title.toLowerCase());
                 }
+
+                if (hoveredCategoryTitle) {
+                  handleCategorySelectionTitle(hoveredCategoryTitle.toLowerCase());
+                }
+
+                handleCategoryCardClose();
               }}
             >
               {child.content.title}

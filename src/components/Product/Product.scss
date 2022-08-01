@@ -1,0 +1,48 @@
+@import '../../styles/vars';
+
+.product {
+  padding: 12px;
+  width: 300px;
+  height: 450px;
+
+  border-radius: 12px;
+
+  background-color: $baby-blue-eyes;
+
+  &__wrapper {
+    display: grid;
+    grid-template-rows: 320px 72px 1fr;
+
+    height: 100%;
+  }
+
+  &__image {
+    grid-row: 1;
+    width: 250px;
+    height: 320px;
+
+    border-radius: 12px;
+
+    justify-self: center;
+  }
+
+  &__title {
+    grid-row: 2;
+    padding: 0 13px;
+    margin-top: 8px;
+
+    font-weight: 700;
+
+    color: $space-cadet;
+  }
+
+  &__price {
+    grid-row: 3;
+    padding: 0 13px;
+    margin-top: 8px;
+
+    font-weight: 700;
+
+    color: $space-cadet;
+  }
+}

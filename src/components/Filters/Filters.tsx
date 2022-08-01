@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Filters: React.FC = () => {
   return (
-    <section className="col">
+    <section className="filters">
       <h2>Filters</h2>
 
       <p>stars</p>

@@ -3,6 +3,8 @@
 .categories {
   height: 100%;
 
+  overflow: hidden;
+
   &__wrapper {
     display: flex;
     flex-direction: column;
