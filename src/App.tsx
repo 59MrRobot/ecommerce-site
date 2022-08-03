@@ -4,7 +4,7 @@ import { Header } from './components/Header';
 import { AppContext } from './context/AppContext';
 import { Categories } from './components/Categories';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { ProductsList } from './components/ProductsList';
+import { MainContent } from './components/MainContent';
 import { getProductsList } from './api/productsList';
 // import { Filters } from './components/Filters';
 import list from './api/catId=4209.json';
@@ -18,7 +18,11 @@ const App: React.FC = () => {
   const [selectedCategoryTitle, setSelectedCategoryTitle] = useState('');
   const [selectedChildTitle, setSelectedChildTitle] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
+  const [facets, setFacets] = useState<Facet[]>([]);
   const [categoryName, setCategoryName] = useState('');
+  const [sortBy, setSortBy] = useState('none');
+  const [priceRange, setPriceRange] = useState<[number, number] | []>([]);
+  const [priceFilter, setPriceFilter] = useState<number | undefined>();
 
   const handleCategorySelection = (categoryId: number) => {
     setSelectedCategoryId(categoryId);
@@ -32,12 +36,21 @@ const App: React.FC = () => {
     setSelectedChildTitle(childTitle);
   }
 
+  const handleSort = (sort: string) => {
+    setSortBy(sort);
+  }
+
+  const handlePriceFilter = (range: number) => {
+    setPriceFilter(range);
+  }
+
   const loadProducts = useCallback(
     async () => {
       const loadedProducts = await getProductsList(selectedCategoryId);
 
       setProducts(loadedProducts.products);
       setCategoryName(loadedProducts.categoryName);
+      setFacets(loadedProducts.facets);
     }, [selectedCategoryId]);
 
   useEffect(() => {
@@ -47,7 +60,29 @@ const App: React.FC = () => {
   useEffect(() => {
     setProducts(list.products);
     setCategoryName(list.categoryName);
+    setFacets(list.facets);
   }, []);
+
+  switch (sortBy) {
+    case 'descending':
+      products.sort((product1, product2) => {
+        return product2.price.current.value - product1.price.current.value;
+      });
+      break;
+    case 'ascending':
+      products.sort((product1, product2) => {
+        return product1.price.current.value - product2.price.current.value;
+      });
+      break;
+  }
+
+  useEffect(() => {
+    setPriceRange([Math.min(...products.map(product => product.price.current.value)), Math.max(...products.map(product => product.price.current.value))]);
+  }, [products]);
+
+  if (priceFilter) {
+    setProducts(products.filter(product => product.price.current.value >= priceFilter));
+  }
 
   return (
     <AppContext.Provider value={{
@@ -59,6 +94,13 @@ const App: React.FC = () => {
       handleCategorySelectionTitle,
       selectedChildTitle,
       handleChildSelectionTitle,
+      products,
+      sortBy,
+      handleSort,
+      priceRange,
+      priceFilter,
+      handlePriceFilter,
+      facets,
     }}>
       <div className="app">
         <Header />
@@ -72,14 +114,7 @@ const App: React.FC = () => {
             />}
           />
           <Route 
-            path='/men/*'
-            element={<Categories 
-              setSearch={setSearch} 
-              setSelectedSectionTitle={setSelectedSectionTitle}
-            />}
-          />
-          <Route 
-            path='/women/*' 
+            path={`:${selectedSectionTitle}/*`}
             element={<Categories 
               setSearch={setSearch} 
               setSelectedSectionTitle={setSelectedSectionTitle}
@@ -88,9 +123,11 @@ const App: React.FC = () => {
         </Routes>
 
         <Routes>
-          <Route
-            path={`/${selectedSectionTitle}/${selectedCategoryTitle.toLowerCase().split(' ').join('_')}/${selectedChildTitle.toLowerCase().split(' ').join('-')}`}
-            element={<ProductsList categoryName={categoryName} products={products} />}
+          <Route 
+            path={`:${selectedSectionTitle}/${selectedCategoryTitle.toLowerCase().split(' ').join('_')}/${selectedChildTitle.toLowerCase().split(' ').join('-')}`} 
+            element={<MainContent
+              categoryName={categoryName}
+            />}
           />
         </Routes>
 

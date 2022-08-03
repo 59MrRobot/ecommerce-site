@@ -9,6 +9,13 @@ interface Context {
   handleCategorySelectionTitle: (categoryTitle: string) => void;
   selectedChildTitle: string,
   handleChildSelectionTitle: (childTitle: string) => void;
+  products: Product[];
+  sortBy: string;
+  handleSort: (sort: string) => void;
+  priceRange: [number, number] | [];
+  priceFilter: number | undefined;
+  handlePriceFilter: (range: number) => void;
+  facets: Facet[];
 }
 
 export const AppContext = React.createContext<Context>({
@@ -20,4 +27,11 @@ export const AppContext = React.createContext<Context>({
   handleCategorySelectionTitle: () => {},
   selectedChildTitle: '',
   handleChildSelectionTitle: () => {},
+  products: [],
+  sortBy: 'none',
+  handleSort: () => {},
+  priceRange: [],
+  priceFilter: undefined,
+  handlePriceFilter: () => {},
+  facets: [],
 });

@@ -1,12 +1,3 @@
-// interface Category {
-//   name: string;
-//   description: string;
-//   id: number;
-//   uuid: string;
-//   slug: string;
-//   _links: Links;
-// }
-
 interface Links {
   image: {
     href: string;
@@ -128,4 +119,20 @@ interface Product {
   // videoUrl: null,
   isSellingFast: boolean,
   // sponsoredCampaignId: null
+}
+
+interface Facet {
+  id: string;
+  name: string;
+  facetValues: FacetValue[];
+  displayStyle: string;
+  facetType: string;
+  hasSelectedValues: boolean;
+}
+
+interface FacetValue {
+  count: number;
+  id: string;
+  name: string;
+  isSelected: boolean;
 }

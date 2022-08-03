@@ -5,8 +5,6 @@ import { CategoriesList } from '../CategoriesList';
 import cn from 'classnames';
 import s from '../../api/categories.json';
 import './Categories.scss';
-import { Filters } from '../Filters';
-// import { ProductsList } from '../ProductsList';
 
 
 import { getProductsList } from '../../api/productsList';
@@ -21,18 +19,12 @@ export const Categories: React.FC<Props> = React.memo(
     const {
       search,
       selectedSectionTitle,
-      // selectedCategoryId,
-      // selectedCategoryTitle,
-      // selectedChildTitle,
   } = useContext(AppContext);
 
     const [sections, setSections] = useState<Section[]>([]);
-    // const [selectedSectionTitle, setSelectedSectionTitle] = useState('');
     const [categories, setCategories] = useState<Category[] | undefined>([]);
 
     const location = useLocation();
-
-    // let categories: Category[] | undefined;
 
     // const loadSections = useCallback(
     //   async () => {

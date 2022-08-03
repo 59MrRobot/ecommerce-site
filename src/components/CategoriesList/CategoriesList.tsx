@@ -1,8 +1,7 @@
-import React, { Children, useRef, useState } from 'react';
+import React, { Children, useState } from 'react';
 import './CategoriesList.scss';
 import cn from 'classnames';
 
-import gsap from 'gsap';
 import { Category } from '../Category';
 
 interface Props {
@@ -15,7 +14,7 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
   const [subCategories, setSubCategories] = useState<Children[]>([]);
   const [hoveredCategory, setHoveredCategory] = useState<Category | null>(null);
 
-  const cat = useRef<HTMLDivElement | null>(null);
+  const [showCategoryCard, setShowCategoryCard] = useState(true);
 
   // const { handleCategorySelectionTitle } = useContext(AppContext);
 
@@ -43,10 +42,7 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
   });
 
   const handleCategoryCardClose = () => {
-    gsap.to(cat.current, {
-      display: 'none',
-      duration: 0,
-    })
+    setShowCategoryCard(false);
   }
 
   return (
@@ -66,17 +62,11 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
                   onMouseEnter={() => {
                     setSubCategories(category.children);
                     setHoveredCategory(category);
-                    gsap.to(cat.current, {
-                      display: 'unset',
-                      duration: 0,
-                    })
+                    setShowCategoryCard(true);
                   }}
-                  // onMouseLeave={() => {
-                  //   gsap.to(cat.current, {
-                  //     display: 'none',
-                  //     duration: 0,
-                  //   })
-                  // }}
+                  onMouseLeave={() => {
+                    setShowCategoryCard(false);
+                  }}
                 >
                   {category.content.title.toUpperCase()}
                 </button>
@@ -87,33 +77,28 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
         </div>
       </nav>
 
-      <div
-        className="categories__card"
-        ref={cat}
-        onMouseEnter={() => {
-          gsap.to(cat.current, {
-            display: 'unset',
-            duration: 0,
-          })
-        }}
-        onMouseLeave={() => {
-          gsap.to(cat.current, {
-            display: 'none',
-            duration: 0,
-          })
-        }}
-      >
-        <div className="categories__card-wrapper">
-          {filteredSubCategories.map(subCategory => (
-            <Category
-              key ={subCategory.id}
-              hoveredCategoryTitle={hoveredCategory?.content.title!}
-              subCategory={subCategory}
-              handleCategoryCardClose={handleCategoryCardClose}
-            />
-          ))}
+      {showCategoryCard && (
+        <div
+          className="categories__card"
+          onMouseEnter={() => {
+            setShowCategoryCard(true);
+          }}
+          onMouseLeave={() => {
+            setShowCategoryCard(false);
+          }}
+        >
+          <div className="categories__card-wrapper">
+            {filteredSubCategories.map(subCategory => (
+              <Category
+                key ={subCategory.id}
+                hoveredCategoryTitle={hoveredCategory?.content.title!}
+                subCategory={subCategory}
+                handleCategoryCardClose={handleCategoryCardClose}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

@@ -1,0 +1,13 @@
+.main-content {
+  padding: 16px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+  }
+
+  &__title {
+    text-align: center;
+  }
+}
