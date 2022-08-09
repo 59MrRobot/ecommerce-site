@@ -19,10 +19,10 @@ const App: React.FC = () => {
   const [selectedChildTitle, setSelectedChildTitle] = useState('');
   const [products, setProducts] = useState<Product[]>([]);
   const [facets, setFacets] = useState<Facet[]>([]);
+  const [priceRangeFacet, setPriceRangeFacet] = useState<Facet | undefined>();
   const [categoryName, setCategoryName] = useState('');
   const [sortBy, setSortBy] = useState('none');
-  const [priceRange, setPriceRange] = useState<[number, number] | []>([]);
-  const [priceFilter, setPriceFilter] = useState<number | undefined>();
+  const [priceValue, setPriceValue] = useState(0);
 
   const handleCategorySelection = (categoryId: number) => {
     setSelectedCategoryId(categoryId);
@@ -41,7 +41,7 @@ const App: React.FC = () => {
   }
 
   const handlePriceFilter = (range: number) => {
-    setPriceFilter(range);
+    setPriceValue(range);
   }
 
   const loadProducts = useCallback(
@@ -63,6 +63,11 @@ const App: React.FC = () => {
     setFacets(list.facets);
   }, []);
 
+  useEffect(() => {
+    setPriceRangeFacet(facets.find(facet => facet.name === 'Price Range'));
+    setPriceValue(Number(priceRangeFacet?.facetValues[0].id));
+  }, [facets, priceRangeFacet?.facetValues]);
+
   switch (sortBy) {
     case 'descending':
       products.sort((product1, product2) => {
@@ -76,13 +81,13 @@ const App: React.FC = () => {
       break;
   }
 
-  useEffect(() => {
-    setPriceRange([Math.min(...products.map(product => product.price.current.value)), Math.max(...products.map(product => product.price.current.value))]);
-  }, [products]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
-  if (priceFilter) {
-    setProducts(products.filter(product => product.price.current.value >= priceFilter));
-  }
+  useEffect(() => {
+    if (priceValue) {
+      setFilteredProducts(products.filter(product => product.price.current.value >= priceValue));
+    }
+  }, [priceValue, products]);
 
   return (
     <AppContext.Provider value={{
@@ -94,13 +99,12 @@ const App: React.FC = () => {
       handleCategorySelectionTitle,
       selectedChildTitle,
       handleChildSelectionTitle,
-      products,
+      filteredProducts,
       sortBy,
       handleSort,
-      priceRange,
-      priceFilter,
+      priceRangeFacet,
+      priceValue,
       handlePriceFilter,
-      facets,
     }}>
       <div className="app">
         <Header />

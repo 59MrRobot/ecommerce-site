@@ -26,17 +26,51 @@
     }
   }
 
-  &__card {
+  &-card {
     width: 320px;
 
     background-color: $baby-blue-eyes;
 
-    &-title {
+    &__title {
       font-size: 14px;
+
+      &-content {
+        padding: 12px 8px;
+
+        display: flex;
+        justify-content: space-between;
+
+        border-bottom: 0.5px solid #141b41;
+      }
     }
 
-    &-subtitle {
+    &__subtitle {
       font-size: 12px;
+    }
+
+    &__clear {
+      border: 2px solid #141b41;
+      background: transparent;
+      color: #141b41;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    &__price-range {
+      display: flex;
+      flex-direction: column;
+
+      margin: 12px 8px;
+      padding: 16px;
+      height: 100%;
+
+      background-color: $cornflower-blue;
+
+      &--values {
+        display: flex;
+        justify-content: space-between;
+      }
     }
   }
 }

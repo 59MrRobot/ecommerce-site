@@ -4,11 +4,11 @@ import { Product } from '../Product/Product';
 import './ProductsList.scss';
 
 export const ProductsList: React.FC = () => {
-  const { products } = useContext(AppContext);
+  const { filteredProducts } = useContext(AppContext);
 
   return (
     <ul className="products-list">
-      {products.map(product => (
+      {filteredProducts.map(product => (
         <li key={product.id}>
           <Product product={product} />
         </li>
