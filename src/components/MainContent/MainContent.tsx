@@ -1,5 +1,5 @@
 import React from 'react';
-import { Filters } from '../Filters';
+import { FiltersList } from '../FiltersList';
 import { Products } from '../Products';
 import './MainContent.scss';
 
@@ -12,8 +12,8 @@ export const MainContent: React.FC<Props> = ({ categoryName }) => {
   return (
     <div className="main-content">
       <div className="main-content__wrapper">
-      <h1 className="main-content__title">{categoryName}</h1>
-        <Filters />
+        <h1 className="main-content__title">{categoryName}</h1>
+        <FiltersList />
 
         <Products categoryName={categoryName} />
       </div>

@@ -14,7 +14,7 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
   const [subCategories, setSubCategories] = useState<Children[]>([]);
   const [hoveredCategory, setHoveredCategory] = useState<Category | null>(null);
 
-  const [showCategoryCard, setShowCategoryCard] = useState(true);
+  const [showCategoryCard, setShowCategoryCard] = useState(false);
 
   // const { handleCategorySelectionTitle } = useContext(AppContext);
 
@@ -46,7 +46,7 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
   }
 
   return (
-    <div className="categories">
+    <>
       <nav className="categories-list">
         <div className="categories-list__wrapper">
           {categories?.map(category => {
@@ -62,10 +62,15 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
                   onMouseEnter={() => {
                     setSubCategories(category.children);
                     setHoveredCategory(category);
-                    setShowCategoryCard(true);
+
+                    setTimeout(() => {
+                      setShowCategoryCard(true);
+                    }, 500)
                   }}
                   onMouseLeave={() => {
-                    setShowCategoryCard(false);
+                    setTimeout(() => {
+                      setShowCategoryCard(false);
+                    }, 500)
                   }}
                 >
                   {category.content.title.toUpperCase()}
@@ -81,7 +86,9 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
         <div
           className="categories__card"
           onMouseEnter={() => {
-            setShowCategoryCard(true);
+            setTimeout(() => {
+              setShowCategoryCard(true);
+            }, 500)
           }}
           onMouseLeave={() => {
             setShowCategoryCard(false);
@@ -99,6 +106,6 @@ export const CategoriesList: React.FC<Props> = ({ categories }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 }

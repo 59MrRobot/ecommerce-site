@@ -9,12 +9,15 @@ interface Context {
   handleCategorySelectionTitle: (categoryTitle: string) => void;
   selectedChildTitle: string,
   handleChildSelectionTitle: (childTitle: string) => void;
-  filteredProducts: Product[];
+  products: Product[];
   sortBy: string;
   handleSort: (sort: string) => void;
   priceRangeFacet: Facet | undefined;
   priceValue: number;
   handlePriceFilter: (range: number) => void;
+  brandsFacet: Facet | undefined;
+  selectedBrands: string[],
+  setSelectedBrands: React.Dispatch<React.SetStateAction<string[]>>,
 }
 
 export const AppContext = React.createContext<Context>({
@@ -26,10 +29,13 @@ export const AppContext = React.createContext<Context>({
   handleCategorySelectionTitle: () => {},
   selectedChildTitle: '',
   handleChildSelectionTitle: () => {},
-  filteredProducts: [],
+  products: [],
   sortBy: 'none',
   handleSort: () => {},
   priceRangeFacet: undefined,
   priceValue: 0,
   handlePriceFilter: () => {},
+  brandsFacet: undefined,
+  selectedBrands: [],
+  setSelectedBrands: () => {},
 });

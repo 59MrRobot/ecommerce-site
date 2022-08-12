@@ -23,26 +23,28 @@ const App: React.FC = () => {
   const [categoryName, setCategoryName] = useState('');
   const [sortBy, setSortBy] = useState('none');
   const [priceValue, setPriceValue] = useState(0);
+  const [brandsFacet, setBrandsFacet] = useState<Facet | undefined>();
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
 
-  const handleCategorySelection = (categoryId: number) => {
-    setSelectedCategoryId(categoryId);
-  }
+  const handleCategorySelection = useCallback(
+    (categoryId: number) => {
+      setSelectedCategoryId(categoryId);
+    }, []);
 
-  const handleCategorySelectionTitle = (categoryTitle: string) => {
-    setSelectedCategoryTitle(categoryTitle);
-  }
+  const handleCategorySelectionTitle = useCallback(
+    (categoryTitle: string) => {
+      setSelectedCategoryTitle(categoryTitle);
+    }, []);
 
-  const handleChildSelectionTitle = (childTitle: string) => {
-    setSelectedChildTitle(childTitle);
-  }
+  const handleChildSelectionTitle = useCallback(
+    (childTitle: string) => {
+      setSelectedChildTitle(childTitle);
+    }, []);
 
-  const handleSort = (sort: string) => {
-    setSortBy(sort);
-  }
-
-  const handlePriceFilter = (range: number) => {
-    setPriceValue(range);
-  }
+  const handleSort = useCallback(
+    (sort: string) => {
+      setSortBy(sort);
+    }, []);
 
   const loadProducts = useCallback(
     async () => {
@@ -66,28 +68,12 @@ const App: React.FC = () => {
   useEffect(() => {
     setPriceRangeFacet(facets.find(facet => facet.name === 'Price Range'));
     setPriceValue(Number(priceRangeFacet?.facetValues[0].id));
+    setBrandsFacet(facets.find(facet => facet.name === 'Brand'));
   }, [facets, priceRangeFacet?.facetValues]);
 
-  switch (sortBy) {
-    case 'descending':
-      products.sort((product1, product2) => {
-        return product2.price.current.value - product1.price.current.value;
-      });
-      break;
-    case 'ascending':
-      products.sort((product1, product2) => {
-        return product1.price.current.value - product2.price.current.value;
-      });
-      break;
-  }
-
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-
-  useEffect(() => {
-    if (priceValue) {
-      setFilteredProducts(products.filter(product => product.price.current.value >= priceValue));
-    }
-  }, [priceValue, products]);
+  const handlePriceFilter = useCallback((range: number) => {
+    setPriceValue(range);
+  }, []);
 
   return (
     <AppContext.Provider value={{
@@ -99,12 +85,15 @@ const App: React.FC = () => {
       handleCategorySelectionTitle,
       selectedChildTitle,
       handleChildSelectionTitle,
-      filteredProducts,
+      products,
       sortBy,
       handleSort,
       priceRangeFacet,
       priceValue,
       handlePriceFilter,
+      brandsFacet,
+      selectedBrands,
+      setSelectedBrands,
     }}>
       <div className="app">
         <Header />
