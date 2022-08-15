@@ -1,6 +1,8 @@
 @import '../../styles/vars';
 
 .categories-list {
+  position: relative;
+
   display: flex;
   justify-content: center;
 
@@ -39,6 +41,8 @@
   z-index: 1;
 
   padding: 16px;
+
+  overflow-x: hidden;
 
   background-color: $baby-blue-eyes;
 

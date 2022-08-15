@@ -18,6 +18,11 @@ interface Context {
   brandsFacet: Facet | undefined;
   selectedBrands: string[],
   setSelectedBrands: React.Dispatch<React.SetStateAction<string[]>>,
+  selectedProductId: number;
+  handleProductSelection: (productId: number) => void;
+  productDetails: ProductDetails | undefined;
+  cart: ProductDetails[];
+  setCart: React.Dispatch<React.SetStateAction<ProductDetails[]>>;
 }
 
 export const AppContext = React.createContext<Context>({
@@ -38,4 +43,9 @@ export const AppContext = React.createContext<Context>({
   brandsFacet: undefined,
   selectedBrands: [],
   setSelectedBrands: () => {},
+  selectedProductId: 0,
+  handleProductSelection: () => {},
+  productDetails: undefined,
+  cart: [],
+  setCart: () => {},
 });

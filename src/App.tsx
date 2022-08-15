@@ -8,6 +8,10 @@ import { MainContent } from './components/MainContent';
 import { getProductsList } from './api/productsList';
 // import { Filters } from './components/Filters';
 import list from './api/catId=4209.json';
+import prod from './api/product.json';
+import { ProductDetails } from './components/ProductDetails';
+import { getProductDetails } from './api/product';
+import { Cart } from './components/Cart';
 
 // import { ProductsList } from './components/ProductsList';
 
@@ -25,6 +29,9 @@ const App: React.FC = () => {
   const [priceValue, setPriceValue] = useState(0);
   const [brandsFacet, setBrandsFacet] = useState<Facet | undefined>();
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [selectedProductId, setSelectedProductId] = useState(0);
+  const [productDetails, setProductDetails] = useState<ProductDetails | undefined>()
+  const [cart, setCart] = useState<ProductDetails[]>([]);
 
   const handleCategorySelection = useCallback(
     (categoryId: number) => {
@@ -41,6 +48,11 @@ const App: React.FC = () => {
       setSelectedChildTitle(childTitle);
     }, []);
 
+  const handleProductSelection = useCallback(
+    (productId: number) => {
+      setSelectedProductId(productId);
+    }, []);
+
   const handleSort = useCallback(
     (sort: string) => {
       setSortBy(sort);
@@ -55,9 +67,9 @@ const App: React.FC = () => {
       setFacets(loadedProducts.facets);
     }, [selectedCategoryId]);
 
-  useEffect(() => {
-    // loadProducts();
-  }, [loadProducts]);
+  // useEffect(() => {
+  //    loadProducts();
+  // }, [loadProducts]);
 
   useEffect(() => {
     setProducts(list.products);
@@ -74,6 +86,21 @@ const App: React.FC = () => {
   const handlePriceFilter = useCallback((range: number) => {
     setPriceValue(range);
   }, []);
+
+  const loadProductDetails = useCallback(
+    async () => {
+      const loadedProductDetails = await getProductDetails(selectedProductId);
+
+      setProductDetails(loadedProductDetails);
+    }, [selectedProductId]);
+
+    // useEffect(() => {
+    //    loadProductDetails();
+    // }, [loadProductDetails])
+
+    useEffect(() => {
+      setProductDetails(prod);
+    }, [productDetails]);
 
   return (
     <AppContext.Provider value={{
@@ -94,6 +121,11 @@ const App: React.FC = () => {
       brandsFacet,
       selectedBrands,
       setSelectedBrands,
+      selectedProductId,
+      handleProductSelection,
+      productDetails,
+      cart,
+      setCart,
     }}>
       <div className="app">
         <Header />
@@ -116,21 +148,21 @@ const App: React.FC = () => {
         </Routes>
 
         <Routes>
+          <Route
+            path="/cart"
+            element={<Cart />}
+          />
           <Route 
             path={`:${selectedSectionTitle}/${selectedCategoryTitle.toLowerCase().split(' ').join('_')}/${selectedChildTitle.toLowerCase().split(' ').join('-')}`} 
             element={<MainContent
               categoryName={categoryName}
             />}
           />
+          <Route 
+            path={`:${selectedSectionTitle}/${selectedCategoryTitle.toLowerCase().split(' ').join('_')}/${selectedChildTitle.toLowerCase().split(' ').join('-')}/product/${productDetails?.name.toLowerCase().split(' ').join('-')}`} 
+            element={<ProductDetails />}
+          />
         </Routes>
-
-        {/* <div className="main-content">
-          <div className="main-content__wrapper">
-            <Filters />
-
-            <ProductsList categoryName={categoryName} products={products} />
-          </div>
-        </div> */}
       </div>
     </AppContext.Provider>
   );

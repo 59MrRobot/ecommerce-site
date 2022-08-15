@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AppContext } from '../../context/AppContext';
 import './Product.scss';
 
 interface Props {
@@ -6,8 +8,14 @@ interface Props {
 }
 
 export const Product: React.FC<Props> = ({ product }) => {
+  const { handleProductSelection, productDetails } = useContext(AppContext);
+
   return (
-    <div className="product">
+    <Link 
+      to={`product/${productDetails?.name.toLowerCase().split(' ').join('-')}`} 
+      className="product"
+      onClick={() => handleProductSelection(product.id)}
+    >
       <div className="product__wrapper">
         <img 
           src={`https://${product.imageUrl}`} 
@@ -17,6 +25,6 @@ export const Product: React.FC<Props> = ({ product }) => {
         <p className="product__title">{product.name}</p>
         <p className="product__price">{product.price.current.text}</p>
       </div>
-    </div>
+    </Link>
   )
 }

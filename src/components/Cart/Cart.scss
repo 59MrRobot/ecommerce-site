@@ -1,0 +1,36 @@
+@import '../../styles/vars';
+
+.cart {
+  height: 100vh;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 800px;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  &__image {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__clear {
+    padding: 16px 32px;
+    border: none;
+    background-color: $baby-blue-eyes;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $green-blue;
+    }
+  }
+}

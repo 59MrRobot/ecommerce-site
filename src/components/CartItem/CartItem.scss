@@ -1,0 +1,19 @@
+.cart-item {
+  &__wrapper {
+    display: flex;
+    gap: 8px;
+
+    padding: 16px;
+  }
+
+  &__image {
+    width: 100px;
+    height: 150px;
+
+    object-fit: contain;
+  }
+
+  &__info {
+    margin: 8px 0;
+  }
+}

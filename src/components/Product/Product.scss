@@ -1,6 +1,8 @@
 @import '../../styles/vars';
 
 .product {
+  display: block;
+
   padding: 12px;
   width: 300px;
   height: 450px;
@@ -8,6 +10,12 @@
   border-radius: 12px;
 
   background-color: $baby-blue-eyes;
+  text-decoration: none;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.025);
+  }
 
   &__wrapper {
     display: grid;

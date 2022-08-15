@@ -2,10 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.scss';
 
-// import { getCategories } from '../../api/categories';
-
-// import { getProducts } from '../../api/products';
-
 export const Header: React.FC = React.memo(
   () => {
     return (
@@ -20,7 +16,13 @@ export const Header: React.FC = React.memo(
               />
             </Link>
 
-            <div className="header__cart">Cart</div>
+            <Link to="/cart">
+              <img
+                src={`${process.env.PUBLIC_URL}/images/cart.png`} 
+                alt=""
+                className="header__cart"
+              />
+            </Link>
           </div>
         </div>
       </div>

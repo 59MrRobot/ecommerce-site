@@ -21,25 +21,11 @@ interface Section {
   id: string;
   alias: string;
   type: string;
-  // channelExclusions: [],
-  // webLargePriority: 0,
   content: {
     title: string;
-    // subTitle: string | null,
-    // webLargeImageUrl: string | null,
-    // mobileImageUrl: string | null
   },
-  // display: string | null,
-  // style: {
-  //   webLargeStyleType: string;
-  //   mobileStyleType: string;
-  // },
   link: {
-  //   linkType: string;
-  //   brandSectionAlias: string | null,
     categoryId: null,
-  //   webUrl: string;
-  //   appUrl: string | null
   },
   children: Cat[];
 }
@@ -47,26 +33,9 @@ interface Section {
 interface Category {
   id: string;
   type: string;
-  // channelExclusions: [],
-  // webLargePriority: number,
   content: {
     title: string;
-    // subTitle: null,
-    // webLargeImageUrl: null,
-    // mobileImageUrl: null
   },
-  // display: null,
-  // style: {
-  //   webLargeStyleType: string;
-  //   mobileStyleType: string;
-  // },
-  // link: {
-  //   linkType: string;
-  //   brandSectionAlias: null,
-  //   categoryId: number,
-  //   webUrl: string;
-  //   appUrl: string;
-  // },
   children: Children[];
 }
 
@@ -95,11 +64,9 @@ interface Product {
       text: string;
     },
     previous: {
-      // value: null,
       text: string;
     },
   rrp: {
-      // value: null,
       text: string;
     },
     isMarkedDown: boolean,
@@ -111,14 +78,11 @@ interface Product {
   brandName: string;
   hasVariantColours: boolean,
   hasMultiplePrices: boolean,
-  // groupId: null,
   productCode: number;
   productType: string;
   url: string;
   imageUrl: string;
-  // videoUrl: null,
   isSellingFast: boolean,
-  // sponsoredCampaignId: null
 }
 
 interface Facet {
@@ -135,4 +99,65 @@ interface FacetValue {
   id: string;
   name: string;
   isSelected: boolean;
+}
+
+interface Image {
+  url: string;
+  type: string;
+  colourWayId: number | null;
+  colourCode: string;
+  colour: string;
+  isPrimary: boolean;
+}
+
+interface ProductDetails {
+  id: number;
+  name: string;
+  description: string;
+  gender: string;
+  productCode: string;
+  pdpLayout: string;
+  brand: {
+    brandId: number;
+    name: string;
+  };
+  isInStock: boolean;
+  variants: Variant[];
+  media: {
+    images: Image[];
+  };
+  info: {
+    aboutMe: string;
+    sizeAndFit: string;
+    careInfo: string;
+  };
+  price: {
+    current: {
+      value: number;
+      text: string;
+      versionId: string;
+      conversionId: string;
+    };
+    currency: string;
+  };
+  productType: {
+    id: number;
+    name: string;
+  };
+  baseUrl: string;
+}
+
+interface Variant {
+  id: number;
+  name: string;
+  sizeId: number;
+  brandSize: string;
+  sizeDescription: string;
+  displaySizeText: string;
+  sizeOrder: number;
+  sku: string;
+  isLowInStock: boolean;
+  isInStock: boolean;
+  isAvailable: boolean;
+  colour: string;
 }
