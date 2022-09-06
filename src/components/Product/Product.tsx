@@ -8,13 +8,17 @@ interface Props {
 }
 
 export const Product: React.FC<Props> = ({ product }) => {
-  const { handleProductSelection, productDetails } = useContext(AppContext);
+  const {
+    handleProductSelection,
+  } = useContext(AppContext);
 
   return (
-    <Link 
-      to={`product/${productDetails?.name.toLowerCase().split(' ').join('-')}`} 
+    <Link
+      to={`product/${product.name.toLowerCase().split(' ').join('-')}`} 
       className="product"
-      onClick={() => handleProductSelection(product.id)}
+      onClick={() => {
+        handleProductSelection(product.id);
+      }}
     >
       <div className="product__wrapper">
         <img 

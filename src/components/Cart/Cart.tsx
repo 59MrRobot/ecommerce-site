@@ -4,7 +4,7 @@ import { CartItem } from '../CartItem';
 import './Cart.scss';
 
 export const Cart: React.FC = () => {
-  const { cart, setCart } = useContext(AppContext);
+  const { cart, setCart, totalPrice } = useContext(AppContext);
 
   return (
     <div className="cart">
@@ -22,12 +22,17 @@ export const Cart: React.FC = () => {
             </div>
           )
           : (
-            <div>
+            <div className="cart-list">
               {cart.map(item => (
                 <CartItem item={item} />
               ))}
             </div>
           )}
+
+        <div>
+          Total:
+          <span>{`$ ${Math.round(totalPrice * 100) / 100}`}</span>
+        </div>
 
         <button
           type="button"

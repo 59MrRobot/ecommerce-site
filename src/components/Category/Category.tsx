@@ -35,7 +35,7 @@ export const Category: React.FC<Props> = React.memo(
           {subCategory.children.map(child => (
             <li key={child.id} >
               <Link 
-                to={`/${selectedSectionTitle}/${hoveredCategoryTitle.toLowerCase().split(' ').join('_')}/${child.content.title.toLowerCase().split(' ').join('-')}`}
+                to={`:${hoveredCategoryTitle.toLowerCase().split(' ').join('_')}/${child.content.title.toLowerCase().split(' ').join('-')}`}
                 className="category__link"
                 onClick={() => {
                   if (child.link && child.link.categoryId) {

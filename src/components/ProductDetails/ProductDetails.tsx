@@ -1,16 +1,32 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { getProductDetails } from '../../api/product';
 import { AppContext } from '../../context/AppContext';
+import { Categories } from '../Categories';
+import { Loader } from '../Loader';
 import './ProductDetails.scss';
 
 export const ProductDetails: React.FC = React.memo(
   () => {
-    const { productDetails, cart, setCart } = useContext(AppContext);
-
+    const { selectedProductId, cart, setCart } = useContext(AppContext);
+    const [productDetails, setProductDetails] = useState<ProductDetails>()
     const [imagesUrls, setImagesUrls] = useState<string[]>([]);
     const [displayImageUrl, setDisplayImageUrl] = useState('');
     const [variants, setVariants] = useState<Variant[]>([]);
+    const [showPage, setShowPage] = useState(false);
 
     const details = document.getElementById('details');
+
+    const loadProductDetails = useCallback(
+      async () => {
+        const loadedProductDetails = await getProductDetails(selectedProductId);
+
+        setProductDetails(loadedProductDetails);
+        setShowPage(true);
+      }, [selectedProductId]);
+
+    useEffect(() => {
+       loadProductDetails();
+    }, [loadProductDetails]);
 
     useEffect(() => {
       if (productDetails) {
@@ -32,6 +48,7 @@ export const ProductDetails: React.FC = React.memo(
 
     return (
       <div className="product-details">
+        <Categories />
         <div className="product-details__wrapper">
           <div className="product-details__content">
             <div className="product-details__visuals">
@@ -204,6 +221,6 @@ export const ProductDetails: React.FC = React.memo(
           </div>
         </div>
       </div>
-    );
+    )
   }
 )

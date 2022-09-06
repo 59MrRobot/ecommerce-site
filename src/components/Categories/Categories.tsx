@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
 import { CategoriesList } from '../CategoriesList';
@@ -6,20 +6,12 @@ import cn from 'classnames';
 import s from '../../api/categories.json';
 import './Categories.scss';
 
-
-import { getProductsList } from '../../api/productsList';
-
-interface Props {
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
-  setSelectedSectionTitle: React.Dispatch<React.SetStateAction<string | undefined>>;
-}
-
-export const Categories: React.FC<Props> = React.memo(
-  ({ setSearch, setSelectedSectionTitle }) => {
+export const Categories: React.FC = React.memo(
+  () => {
     const {
-      search,
       selectedSectionTitle,
-  } = useContext(AppContext);
+      handleSectionSelection
+    } = useContext(AppContext);
 
     const [sections, setSections] = useState<Section[]>([]);
     const [categories, setCategories] = useState<Category[] | undefined>([]);
@@ -39,9 +31,9 @@ export const Categories: React.FC<Props> = React.memo(
       setSections(s.navigation);
 
       if (location.pathname === '/men') {
-        setSelectedSectionTitle('men')
+        handleSectionSelection('men');
       } else if (location.pathname === '/women') {
-        setSelectedSectionTitle('women')
+        handleSectionSelection('women');
       }
 
       const selectedSection = sections.find(section =>
@@ -51,7 +43,7 @@ export const Categories: React.FC<Props> = React.memo(
         setCategories(selectedSection.children.find(child =>
           child.content.title === 'Categories')?.children);
       }
-    }, [location.pathname, sections, selectedSectionTitle, setSelectedSectionTitle]);
+    }, [handleSectionSelection, location.pathname, sections, selectedSectionTitle]);
 
     const filteredCategories = categories?.filter(category => category.content.title !== 'UP TO 80% OFF' && category.content.title !== 'UP TO 80% OFF!');
     
@@ -81,10 +73,8 @@ export const Categories: React.FC<Props> = React.memo(
               <input 
                 type="text"
                 name="search"
-                value={search}
                 placeholder="Search for products..."
                 className="categories__search"
-                onChange={(event) => setSearch(event.target.value)}
               />
 
               <button 
@@ -104,19 +94,6 @@ export const Categories: React.FC<Props> = React.memo(
             </div>
           </div>
         </div>
-
-        {/* <div className="main-content">
-          <div className="main-content__wrapper">
-            <Filters />
-            
-            <Routes>
-              <Route
-                path={`/${selectedSectionTitle}/${selectedCategoryTitle.toLowerCase().split(' ').join('_')}/${selectedChildTitle.toLowerCase().split(' ').join('-')}`}
-                element={<ProductsList categoryName={categoryName} products={products} />}
-              />
-            </Routes>
-          </div>
-        </div> */}
       </>
     );
   }

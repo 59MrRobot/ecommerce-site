@@ -1,12 +1,36 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { getProductsList } from '../../api/productsList';
 import { AppContext } from '../../context/AppContext';
+import { Loader } from '../Loader';
 import { Product } from '../Product/Product';
 import './ProductsList.scss';
 
 export const ProductsList: React.FC = () => {
-  const { products, sortBy, priceValue, selectedBrands } = useContext(AppContext);
-
+  const {
+    selectedCategoryId,
+    sortBy,
+    priceValue,
+    selectedBrands,
+    handleFacetsSelection,
+    handleCategoryName,
+  } = useContext(AppContext);
+  const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [showPage, setShowPage] = useState(false);
+
+  const loadProducts = useCallback(
+    async () => {
+      const loadedProducts = await getProductsList(selectedCategoryId);
+
+      setProducts(loadedProducts.products);
+      handleCategoryName(loadedProducts.categoryName)
+      handleFacetsSelection(loadedProducts.facets);
+      setShowPage(true);
+    }, [handleCategoryName, handleFacetsSelection, selectedCategoryId]);
+
+  useEffect(() => {
+     loadProducts();
+  }, [loadProducts]);
 
   useEffect(() => {
     if (priceValue) {
@@ -35,13 +59,17 @@ export const ProductsList: React.FC = () => {
     }
   }, [products, selectedBrands]);
 
-  return (
-    <ul className="products-list">
-      {filteredProducts.map(product => (
-        <li key={product.id}>
-          <Product product={product} />
-        </li>
-      ))}
-    </ul>
-  )
+  return showPage
+    ? (
+      <ul className="products-list">
+        {filteredProducts.map(product => (
+          <li key={product.id}>
+            <Product product={product} />
+          </li>
+        ))}
+      </ul>
+    )
+    : (
+      <Loader />
+    )
 }

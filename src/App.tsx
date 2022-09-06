@@ -2,26 +2,17 @@ import React, { useCallback, useEffect, useState } from 'react';
 import './App.scss';
 import { Header } from './components/Header';
 import { AppContext } from './context/AppContext';
-import { Categories } from './components/Categories';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { MainContent } from './components/MainContent';
-import { getProductsList } from './api/productsList';
-// import { Filters } from './components/Filters';
-import list from './api/catId=4209.json';
-import prod from './api/product.json';
 import { ProductDetails } from './components/ProductDetails';
-import { getProductDetails } from './api/product';
 import { Cart } from './components/Cart';
-
-// import { ProductsList } from './components/ProductsList';
+import { Homepage } from './components/Homepage';
 
 const App: React.FC = () => {
-  const [search, setSearch] = useState('');
-  const [selectedSectionTitle, setSelectedSectionTitle] = useState<string | undefined>('men');
+  const [selectedSectionTitle, setSelectedSectionTitle] = useState('men');
   const [selectedCategoryId, setSelectedCategoryId] = useState(0);
   const [selectedCategoryTitle, setSelectedCategoryTitle] = useState('');
   const [selectedChildTitle, setSelectedChildTitle] = useState('');
-  const [products, setProducts] = useState<Product[]>([]);
   const [facets, setFacets] = useState<Facet[]>([]);
   const [priceRangeFacet, setPriceRangeFacet] = useState<Facet | undefined>();
   const [categoryName, setCategoryName] = useState('');
@@ -30,8 +21,19 @@ const App: React.FC = () => {
   const [brandsFacet, setBrandsFacet] = useState<Facet | undefined>();
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedProductId, setSelectedProductId] = useState(0);
-  const [productDetails, setProductDetails] = useState<ProductDetails | undefined>()
+  const [selectedProductName, setSelectedProductName] = useState('')
   const [cart, setCart] = useState<ProductDetails[]>([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const handleFacetsSelection = useCallback(
+    (facets: Facet[]) => {
+      setFacets(facets);
+    }, []);
+
+  const handleCategoryName = useCallback(
+    (categoryName: string) => {
+      setCategoryName(categoryName);
+    }, []);
 
   const handleCategorySelection = useCallback(
     (categoryId: number) => {
@@ -53,28 +55,19 @@ const App: React.FC = () => {
       setSelectedProductId(productId);
     }, []);
 
+  const handleProductNameSelection = useCallback(
+    (productName: string) => {
+      setSelectedProductName(productName);
+    }, []);
+
   const handleSort = useCallback(
     (sort: string) => {
       setSortBy(sort);
     }, []);
 
-  const loadProducts = useCallback(
-    async () => {
-      const loadedProducts = await getProductsList(selectedCategoryId);
-
-      setProducts(loadedProducts.products);
-      setCategoryName(loadedProducts.categoryName);
-      setFacets(loadedProducts.facets);
-    }, [selectedCategoryId]);
-
-  // useEffect(() => {
-  //    loadProducts();
-  // }, [loadProducts]);
-
-  useEffect(() => {
-    setProducts(list.products);
-    setCategoryName(list.categoryName);
-    setFacets(list.facets);
+  const handleSectionSelection = useCallback(
+    (sectionTitle: string) => {
+      setSelectedSectionTitle(sectionTitle);
   }, []);
 
   useEffect(() => {
@@ -87,24 +80,13 @@ const App: React.FC = () => {
     setPriceValue(range);
   }, []);
 
-  const loadProductDetails = useCallback(
-    async () => {
-      const loadedProductDetails = await getProductDetails(selectedProductId);
-
-      setProductDetails(loadedProductDetails);
-    }, [selectedProductId]);
-
-    // useEffect(() => {
-    //    loadProductDetails();
-    // }, [loadProductDetails])
-
-    useEffect(() => {
-      setProductDetails(prod);
-    }, [productDetails]);
+  const handleTotalPrice = useCallback(
+    (price: number) => {
+      setTotalPrice(price);
+    }, []);
 
   return (
     <AppContext.Provider value={{
-      search,
       selectedSectionTitle,
       selectedCategoryId,
       handleCategorySelection,
@@ -112,7 +94,6 @@ const App: React.FC = () => {
       handleCategorySelectionTitle,
       selectedChildTitle,
       handleChildSelectionTitle,
-      products,
       sortBy,
       handleSort,
       priceRangeFacet,
@@ -123,9 +104,15 @@ const App: React.FC = () => {
       setSelectedBrands,
       selectedProductId,
       handleProductSelection,
-      productDetails,
+      selectedProductName,
+      handleProductNameSelection,
       cart,
       setCart,
+      totalPrice,
+      handleTotalPrice,
+      handleFacetsSelection,
+      handleCategoryName,
+      handleSectionSelection,
     }}>
       <div className="app">
         <Header />
@@ -138,30 +125,27 @@ const App: React.FC = () => {
               replace={true}
             />}
           />
-          <Route 
-            path={`:${selectedSectionTitle}/*`}
-            element={<Categories 
-              setSearch={setSearch} 
-              setSelectedSectionTitle={setSelectedSectionTitle}
-            />}
+          <Route
+            path={`/${selectedSectionTitle}`}
+            element={<Homepage />}
           />
-        </Routes>
-
-        <Routes>
           <Route
             path="/cart"
             element={<Cart />}
           />
-          <Route 
-            path={`:${selectedSectionTitle}/${selectedCategoryTitle.toLowerCase().split(' ').join('_')}/${selectedChildTitle.toLowerCase().split(' ').join('-')}`} 
+          <Route
+            path={`${selectedSectionTitle}/*`}
             element={<MainContent
               categoryName={categoryName}
+              selectedProductName={selectedProductName}
+              selectedCategoryTitle={selectedCategoryTitle}
+              selectedChildTitle={selectedChildTitle}
             />}
           />
-          <Route 
-            path={`:${selectedSectionTitle}/${selectedCategoryTitle.toLowerCase().split(' ').join('_')}/${selectedChildTitle.toLowerCase().split(' ').join('-')}/product/${productDetails?.name.toLowerCase().split(' ').join('-')}`} 
+          {/* <Route
+            path={`:${selectedSectionTitle}/${selectedCategoryTitle.toLowerCase().split(' ').join('_')}/${selectedChildTitle.toLowerCase().split(' ').join('-')}/product/${selectedProductName.toLowerCase().split(' ').join('-')}`} 
             element={<ProductDetails />}
-          />
+          /> */}
         </Routes>
       </div>
     </AppContext.Provider>

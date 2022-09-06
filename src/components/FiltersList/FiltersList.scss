@@ -1,10 +1,15 @@
 @import '/src/styles/vars';
 
 .filters {
+  position: relative;
+  left: -91px;
+  width: calc(100vw - 17px);
   padding: 16px;
   margin-top: 16px;
 
   background-color: $cornflower-blue;
+
+  overflow: hidden;
 
   &__wrapper {
     display: flex;
