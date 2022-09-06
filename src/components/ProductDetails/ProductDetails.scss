@@ -1,0 +1,177 @@
+@import '../../styles/vars';
+
+.product-details {
+  width: calc(100vw - 17px);
+
+  overflow-x: hidden;
+
+  padding: 32px 0;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: 900px;
+    margin : 0 auto;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+
+    height: 100%;
+    padding: 0 16px;
+  }
+
+  &__visuals {
+    display: flex;
+  }
+
+  &__description {
+    display: flex;
+    justify-content: space-between;
+
+    &-heading {
+      margin: 16px 0;
+
+      color: $grey;
+      text-transform: uppercase;
+    }
+
+    &-desc {
+      &:first-child {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  &__image {
+    position: relative;
+
+    margin: 0 16px 0 32px;
+
+    &--preview {
+      width: 44px;
+      height: 56px;
+
+      cursor: pointer;
+    }
+
+    &-img {
+      width: 500px;
+      height: 600px;
+    }
+
+    &-arrows {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: 40px;
+      height: 40px;
+
+      cursor: pointer;
+
+      &--left {
+        left: 0;
+      }
+
+      &--right {
+        right: 0;
+      }
+    }
+  }
+
+  &__previews {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+  }
+
+  &__info {
+    width: 300px;
+    height: 100%;
+    padding: 16px 16px 0;
+
+    color: $space-cadet;
+
+    &-name {
+      color: $space-cadet;
+    }
+
+    &-price {
+      margin-top: 32px;
+      color: $grey;
+    }
+
+    &-color {
+      margin-top: 32px;
+    }
+
+    &-size {
+      margin-top: 32px;
+
+      &--select {
+        margin-top: 8px;
+        padding: 0 8px;
+        width: 100%;
+        height: 40px;
+
+        background-color: transparent;
+        border: 1px solid $grey;
+      }
+    }
+
+    &-stock {
+      margin-top: 32px;
+    }
+
+    &-button {
+      width: 100%;
+      height: 40px;
+
+      margin-top: 64px;
+      background-color: $cornflower-blue;
+      border: none;
+      color: #fff;
+
+      text-transform: uppercase;
+      cursor: pointer;
+
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: $green-blue;
+      }
+    }
+
+    &-text {
+      margin: 0;
+
+      &-list {
+        display: flex;
+        flex-direction: column;
+
+        margin: 16px 0;
+        padding: 0;
+
+        list-style: none;
+      }
+
+      &-container {
+        &:first-child {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,149 @@
+@import '/src/styles/vars';
+
+.filter {
+  &__button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 4px;
+    width: 168px;
+
+    background: transparent;
+    border: none;
+    border-top: 1px solid $green-blue;
+    border-bottom: 1px solid $green-blue;
+
+    transition: color 0.3s;
+
+    &:hover {
+      color: white;
+    }
+
+    &--active {
+      color: #fff;
+    }
+
+    &--selected {
+      color: #fff;
+      border: 1px solid #fff;
+      border-top: 2px solid;
+    }
+
+    &-image {
+      width: 16px;
+      height: 16px;
+    }
+
+    &-select {
+      height: 40px;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+  
+      background-color: #fff;
+  
+      transition: box-shadow 0.3s;
+  
+      &:hover {
+        box-shadow: 0 0 5px black;
+        clip-path: inset(0 0 -5px -5px);
+      }
+  
+      &--active {
+        background-color: $space-cadet;
+        color: #fff;
+  
+        &:hover {
+          box-shadow: none;
+        }
+      }
+
+      &--brand {
+        text-align: left;
+        padding: 0 8px;
+      }
+    }
+  }
+
+  &-card {
+    position: absolute;
+    width: 320px;
+  
+    box-shadow: 0 0 8px #000;
+  
+    background-color: $baby-blue-eyes;
+  
+    &__wrapper {
+      &--sort {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+  
+        padding: 16px;
+      }
+    }
+  
+    &__title {
+      font-size: 14px;
+  
+      &-content {
+        padding: 12px 8px;
+  
+        display: flex;
+        justify-content: space-between;
+  
+        border-bottom: 0.5px solid #141b41;
+      }
+    }
+  
+    &__subtitle {
+      font-size: 12px;
+    }
+  
+    &__clear {
+      border: 2px solid #141b41;
+      background: transparent;
+      color: #141b41;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+  
+    &__price-range {
+      display: flex;
+      flex-direction: column;
+  
+      margin: 12px 8px;
+      padding: 16px;
+      height: 100%;
+  
+      background-color: $cornflower-blue;
+  
+      &--values {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  &__brands {
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+  
+      padding: 0;
+      margin: 16px 0 0;
+      max-height: 200px;
+      overflow-y: scroll;
+  
+      list-style: none;
+    }
+
+    &-count {
+      margin-left: 8px;
+      color: $grey;
+    }
+  }
+}

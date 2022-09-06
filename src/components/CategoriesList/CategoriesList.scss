@@ -1,0 +1,56 @@
+@import '../../styles/vars';
+
+.categories-list {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+
+  width: 100vw;
+
+  background-color: $green-blue;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+
+    max-width: 1300px;
+  }
+
+  &__button {
+    padding: 16px 8px;
+    min-width: 50px;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+      background-color: $medium-purple;
+    }
+
+    &--special {
+      background-color: $space-cadet;
+    }
+  }
+}
+
+.categories__card {
+  position: absolute;
+  width: 100vw;
+  z-index: 1;
+
+  padding: 16px;
+
+  overflow-x: hidden;
+
+  background-color: $baby-blue-eyes;
+
+  &-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    max-width: 1010px;
+    margin: 0 auto;
+  }
+}

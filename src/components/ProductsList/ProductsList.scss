@@ -1,0 +1,8 @@
+.products-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 16px 8px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}

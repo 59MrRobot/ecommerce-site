@@ -1,0 +1,33 @@
+@import '../../styles/vars';
+
+.homepage {
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 1200px;
+    height: 430px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  &__logo {
+    width: 350px;
+  }
+
+  &__text {
+    margin-top: 32px;
+    text-align: center;
+
+    font-size: 1.5em;
+  }
+
+  &__link {
+    text-decoration: none;
+
+    color: $green-blue;
+  }
+}

@@ -1,0 +1,534 @@
+{
+  "id": 9851612,
+  "name": "Another Influence Arm Panel Crew Neck Sweat",
+  "description": "<ul><li><a href=\"/men/hoodies-sweatshirts/cat/?cid=5668\"><strong>Sweatshirt</strong></a> by Another Influence<ul>    <li>One for your wardrobe </li>    <li>Crew neck</li><li>Contrast sleeve panels </li>    <li>Fitted trims</li><li>Regular fit </li><li>No surprises, just a classic cut</li></ul></li></ul>",
+  "alternateNames": [
+    {
+      "locale": "en-GB",
+      "title": "Another Influence Arm Panel Crew Neck Sweat"
+    },
+    {
+      "locale": "de-DE",
+      "title": "Another Influence – Sweatshirt mit Rundhalsausschnitt und Einsatz am Ärmel"
+    },
+    {
+      "locale": "en-AU",
+      "title": "Another Influence Arm Panel Crew Neck Sweat"
+    },
+    {
+      "locale": "en-US",
+      "title": "Another Influence Arm Panel Crew Neck Sweat"
+    },
+    {
+      "locale": "es-ES",
+      "title": "Sudadera con cuello redondo y panel en el brazo de Another Influence"
+    },
+    {
+      "locale": "fr-FR",
+      "title": "Another Influence - Sweat-shirt ras de cou avec empiècement sur les manches"
+    },
+    {
+      "locale": "it-IT",
+      "title": "Another Influence - Felpa girocollo con pannello sulla manica"
+    },
+    {
+      "locale": "nl-NL",
+      "title": "Another Influence - Sweater met ronde hals en paneel op de mouw"
+    },
+    {
+      "locale": "ru-RU",
+      "title": "Свитшот с круглым вырезом и вставкой Another Influence"
+    },
+    {
+      "locale": "sv-SE",
+      "title": "Another Influence – Sweatshirt med rund halsringning"
+    }
+  ],
+  "localisedData": [
+    {
+      "locale": "de-DE",
+      "title": "Another Influence – Sweatshirt mit Rundhalsausschnitt und Einsatz am Ärmel",
+      "pdpUrl": "https://www.asos.com/de/another-influence/another-influence-sweatshirt-mit-rundhalsausschnitt-und-einsatz-am-armel/prd/9851612"
+    },
+    {
+      "locale": "en-AU",
+      "title": "Another Influence Arm Panel Crew Neck Sweat",
+      "pdpUrl": "https://www.asos.com/au/another-influence/another-influence-arm-panel-crew-neck-sweat/prd/9851612"
+    },
+    {
+      "locale": "en-GB",
+      "title": "Another Influence Arm Panel Crew Neck Sweat",
+      "pdpUrl": "https://www.asos.com/another-influence/another-influence-arm-panel-crew-neck-sweat/prd/9851612"
+    },
+    {
+      "locale": "en-US",
+      "title": "Another Influence Arm Panel Crew Neck Sweat",
+      "pdpUrl": "https://www.asos.com/us/another-influence/another-influence-arm-panel-crew-neck-sweat/prd/9851612"
+    },
+    {
+      "locale": "es-ES",
+      "title": "Sudadera con cuello redondo y panel en el brazo de Another Influence",
+      "pdpUrl": "https://www.asos.com/es/another-influence/sudadera-con-cuello-redondo-y-panel-en-el-brazo-de-another-influence/prd/9851612"
+    },
+    {
+      "locale": "fr-FR",
+      "title": "Another Influence - Sweat-shirt ras de cou avec empiècement sur les manches",
+      "pdpUrl": "https://www.asos.com/fr/another-influence/another-influence-sweat-shirt-ras-de-cou-avec-empiecement-sur-les-manches/prd/9851612"
+    },
+    {
+      "locale": "it-IT",
+      "title": "Another Influence - Felpa girocollo con pannello sulla manica",
+      "pdpUrl": "https://www.asos.com/it/another-influence/another-influence-felpa-girocollo-con-pannello-sulla-manica/prd/9851612"
+    },
+    {
+      "locale": "nl-NL",
+      "title": "Another Influence - Sweater met ronde hals en paneel op de mouw",
+      "pdpUrl": "https://www.asos.com/nl/another-influence/another-influence-sweater-met-ronde-hals-en-paneel-op-de-mouw/prd/9851612"
+    },
+    {
+      "locale": "ru-RU",
+      "title": "Свитшот с круглым вырезом и вставкой Another Influence",
+      "pdpUrl": "https://www.asos.com/ru/another-influence/svitshot-s-kruglym-vyrezom-i-vstavkoj-another-influence/prd/9851612"
+    },
+    {
+      "locale": "sv-SE",
+      "title": "Another Influence – Sweatshirt med rund halsringning",
+      "pdpUrl": "https://www.asos.com/se/another-influence/another-influence-sweatshirt-med-rund-halsringning/prd/9851612"
+    }
+  ],
+  "gender": "Men",
+  "productCode": "1281961",
+  "pdpLayout": "Core",
+  "brand": {
+    "brandId": 13762,
+    "name": "Another Influence",
+    "description": null
+  },
+  "sizeGuide": null,
+  "sizeGuideApiUrl": null,
+  "isNoSize": false,
+  "isOneSize": false,
+  "isInStock": false,
+  "countryOfManufacture": null,
+  "hasVariantsWithProp65Risk": false,
+  "webCategories": [
+    {
+      "id": 12418
+    },
+    {
+      "id": 22130
+    },
+    {
+      "id": 27426
+    }
+  ],
+  "variants": [
+    {
+      "id": 9851847,
+      "name": "Another Influence Arm Panel Crew Neck Sweat",
+      "sizeId": 104628,
+      "brandSize": "XS",
+      "sizeDescription": "Chest 34-36",
+      "displaySizeText": "XS - Chest 34-36",
+      "sizeOrder": 20,
+      "sku": "7360647",
+      "isLowInStock": false,
+      "isInStock": false,
+      "isAvailable": true,
+      "colourWayId": 15074573,
+      "colourCode": "BK1",
+      "colour": "Black",
+      "price": {
+        "current": {
+          "value": 10.4,
+          "text": "$10.40",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "previous": {
+          "value": 26.0,
+          "text": "$26.00",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "rrp": {
+          "value": 59.0,
+          "text": "$59.00",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "xrp": {
+          "value": 6.59,
+          "text": "$6.59",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "5742"
+        },
+        "currency": "USD",
+        "isMarkedDown": true,
+        "isOutletPrice": true,
+        "startDateTime": "2022-08-08T15:55:35Z",
+        "wasPriceStartDate": null
+      },
+      "isPrimary": true,
+      "isProp65Risk": false,
+      "ean": null,
+      "seller": null
+    },
+    {
+      "id": 9851637,
+      "name": "Another Influence Arm Panel Crew Neck Sweat",
+      "sizeId": 104626,
+      "brandSize": "S",
+      "sizeDescription": "Chest 36-38",
+      "displaySizeText": "S - Chest 36-38",
+      "sizeOrder": 30,
+      "sku": "7360648",
+      "isLowInStock": false,
+      "isInStock": false,
+      "isAvailable": true,
+      "colourWayId": 15074573,
+      "colourCode": "BK1",
+      "colour": "Black",
+      "price": {
+        "current": {
+          "value": 10.4,
+          "text": "$10.40",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "previous": {
+          "value": 26.0,
+          "text": "$26.00",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "rrp": {
+          "value": 59.0,
+          "text": "$59.00",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "xrp": {
+          "value": 6.59,
+          "text": "$6.59",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "5742"
+        },
+        "currency": "USD",
+        "isMarkedDown": true,
+        "isOutletPrice": true,
+        "startDateTime": "2021-10-11T06:27:46Z",
+        "wasPriceStartDate": null
+      },
+      "isPrimary": true,
+      "isProp65Risk": false,
+      "ean": null,
+      "seller": null
+    },
+    {
+      "id": 9851864,
+      "name": "Another Influence Arm Panel Crew Neck Sweat",
+      "sizeId": 104625,
+      "brandSize": "M",
+      "sizeDescription": "Chest 38-40",
+      "displaySizeText": "M - Chest 38-40",
+      "sizeOrder": 40,
+      "sku": "7360649",
+      "isLowInStock": false,
+      "isInStock": false,
+      "isAvailable": true,
+      "colourWayId": 15074573,
+      "colourCode": "BK1",
+      "colour": "Black",
+      "price": {
+        "current": {
+          "value": 10.4,
+          "text": "$10.40",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "previous": {
+          "value": 26.0,
+          "text": "$26.00",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "rrp": {
+          "value": 59.0,
+          "text": "$59.00",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "xrp": {
+          "value": 6.59,
+          "text": "$6.59",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "5742"
+        },
+        "currency": "USD",
+        "isMarkedDown": true,
+        "isOutletPrice": true,
+        "startDateTime": "2022-08-10T08:58:00Z",
+        "wasPriceStartDate": null
+      },
+      "isPrimary": true,
+      "isProp65Risk": false,
+      "ean": null,
+      "seller": null
+    },
+    {
+      "id": 9851850,
+      "name": "Another Influence Arm Panel Crew Neck Sweat",
+      "sizeId": 104624,
+      "brandSize": "L",
+      "sizeDescription": "Chest 40-42",
+      "displaySizeText": "L - Chest 40-42",
+      "sizeOrder": 50,
+      "sku": "7360650",
+      "isLowInStock": false,
+      "isInStock": false,
+      "isAvailable": true,
+      "colourWayId": 15074573,
+      "colourCode": "BK1",
+      "colour": "Black",
+      "price": {
+        "current": {
+          "value": 10.4,
+          "text": "$10.40",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "previous": {
+          "value": 26.0,
+          "text": "$26.00",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "rrp": {
+          "value": 59.0,
+          "text": "$59.00",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "xrp": {
+          "value": 6.59,
+          "text": "$6.59",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "5742"
+        },
+        "currency": "USD",
+        "isMarkedDown": true,
+        "isOutletPrice": true,
+        "startDateTime": "2022-08-12T10:33:32Z",
+        "wasPriceStartDate": null
+      },
+      "isPrimary": true,
+      "isProp65Risk": false,
+      "ean": null,
+      "seller": null
+    },
+    {
+      "id": 9851875,
+      "name": "Another Influence Arm Panel Crew Neck Sweat",
+      "sizeId": 104627,
+      "brandSize": "XL",
+      "sizeDescription": "Chest 42-44",
+      "displaySizeText": "XL - Chest 42-44",
+      "sizeOrder": 60,
+      "sku": "7360651",
+      "isLowInStock": false,
+      "isInStock": false,
+      "isAvailable": true,
+      "colourWayId": 15074573,
+      "colourCode": "BK1",
+      "colour": "Black",
+      "price": {
+        "current": {
+          "value": 10.4,
+          "text": "$10.40",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "previous": {
+          "value": 26.0,
+          "text": "$26.00",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "rrp": {
+          "value": 59.0,
+          "text": "$59.00",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "0"
+        },
+        "xrp": {
+          "value": 6.59,
+          "text": "$6.59",
+          "versionId": "CLRP0000020009000000165869369",
+          "conversionId": "5742"
+        },
+        "currency": "USD",
+        "isMarkedDown": true,
+        "isOutletPrice": true,
+        "startDateTime": "2022-08-09T09:59:48Z",
+        "wasPriceStartDate": null
+      },
+      "isPrimary": true,
+      "isProp65Risk": false,
+      "ean": null,
+      "seller": null
+    }
+  ],
+  "media": {
+    "images": [
+      {
+        "url": "images.asos-media.com/products/another-influence-arm-panel-crew-neck-sweat/9851612-1-black",
+        "type": "Standard1",
+        "colourWayId": 15074573,
+        "colourCode": "BK1",
+        "colour": "Black",
+        "isPrimary": true
+      },
+      {
+        "url": "images.asos-media.com/products/another-influence-arm-panel-crew-neck-sweat/9851612-2",
+        "type": "Standard2",
+        "colourWayId": null,
+        "colourCode": "",
+        "colour": "",
+        "isPrimary": false
+      },
+      {
+        "url": "images.asos-media.com/products/another-influence-arm-panel-crew-neck-sweat/9851612-3",
+        "type": "Standard3",
+        "colourWayId": null,
+        "colourCode": "",
+        "colour": "",
+        "isPrimary": false
+      },
+      {
+        "url": "images.asos-media.com/products/another-influence-arm-panel-crew-neck-sweat/9851612-4",
+        "type": "Standard4",
+        "colourWayId": null,
+        "colourCode": "",
+        "colour": "",
+        "isPrimary": false
+      }
+    ],
+    "catwalk": [
+      {
+        "url": "video.asos-media.com/products/another-influence-arm-panel-crew-neck-sweat/9851612-catwalk-AVS",
+        "colourWayId": 15074573,
+        "colourCode": "BK1"
+      }
+    ],
+    "spinset": [],
+    "swatchSprite": []
+  },
+  "badges": [],
+  "info": {
+    "aboutMe": "<div>Soft-touch sweatshirt fabric</div><div>Style and comfort – it's a lifestyle</div><br>Body: 100% Cotton.<br><br>",
+    "sizeAndFit": "<br>Model's height: 188cm/6'2\"</br>Model is wearing: Size Medium",
+    "careInfo": "<div>Avoid post-wash regrets</div><div>Always check the label</div>"
+  },
+  "shippingRestriction": null,
+  "price": {
+    "current": {
+      "value": 10.4,
+      "text": "$10.40",
+      "versionId": "CLRP0000020009000000165869369",
+      "conversionId": "0"
+    },
+    "previous": {
+      "value": 26.0,
+      "text": "$26.00",
+      "versionId": "CLRP0000020009000000165869369",
+      "conversionId": "0"
+    },
+    "rrp": {
+      "value": 59.0,
+      "text": "$59.00",
+      "versionId": "CLRP0000020009000000165869369",
+      "conversionId": "0"
+    },
+    "xrp": {
+      "value": 6.59,
+      "text": "$6.59",
+      "versionId": "CLRP0000020009000000165869369",
+      "conversionId": "5742"
+    },
+    "currency": "USD",
+    "isMarkedDown": true,
+    "isOutletPrice": true,
+    "startDateTime": "2021-10-11T06:27:46Z",
+    "wasPriceStartDate": null
+  },
+  "isDeadProduct": false,
+  "rating": null,
+  "productType": {
+    "id": 8405,
+    "name": "Sweatshirts"
+  },
+  "plpIds": [
+    {
+      "id": 8409,
+      "type": "Standard"
+    },
+    {
+      "id": 12418,
+      "type": "Standard"
+    },
+    {
+      "id": 22130,
+      "type": "Brand"
+    },
+    {
+      "id": 27396,
+      "type": "Standard"
+    },
+    {
+      "id": 27426,
+      "type": "Standard"
+    },
+    {
+      "id": 27441,
+      "type": "Standard"
+    },
+    {
+      "id": 27477,
+      "type": "Standard"
+    },
+    {
+      "id": 28035,
+      "type": "Standard"
+    },
+    {
+      "id": 28045,
+      "type": "Standard"
+    },
+    {
+      "id": 28235,
+      "type": "Standard"
+    },
+    {
+      "id": 28236,
+      "type": "Standard"
+    },
+    {
+      "id": 28240,
+      "type": "Standard"
+    },
+    {
+      "id": 28242,
+      "type": "Standard"
+    },
+    {
+      "id": 28727,
+      "type": "Standard"
+    },
+    {
+      "id": 28728,
+      "type": "Standard"
+    }
+  ],
+  "baseUrl": "https://www.asos.com"
+}
