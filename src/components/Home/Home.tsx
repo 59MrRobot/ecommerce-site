@@ -2,6 +2,7 @@ import React from 'react';
 import { Announcement } from '../Announcement';
 import { Categories } from '../Categories';
 import { Navbar } from '../Navbar';
+import { Products } from '../Products';
 import { Slider } from '../Slider';
 import './Home.scss';
 
@@ -13,6 +14,7 @@ export const Home: React.FC = React.memo(
         <Navbar />
         <Slider />
         <Categories />
+        <Products />
       </div>
     )
   }

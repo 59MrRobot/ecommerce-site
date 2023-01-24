@@ -5,3 +5,8 @@ interface Category {
   img: string,
   title: string,
 }
+
+interface Product {
+  id: number,
+  img: string,
+}
