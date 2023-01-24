@@ -1,0 +1,23 @@
+export const sliderItems = [
+  {
+    id: 1,
+    img: "https://www.nicepng.com/png/full/8-88585_women-fashion-png-example-of-magazine-cover.png",
+    title: "SUMMER SALE",
+    description: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
+    bg: "F5FAFD",
+  },
+  {
+    id: 2,
+    img: "https://i.ibb.co/DG69bQ4/2.png",
+    title: "AUTUMN COLLECTION",
+    description: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
+    bg: "FCF1ED",
+  },
+  {
+    id: 3,
+    img: "https://i.ibb.co/cXFnLLV/3.png",
+    title: "LOUNGEWEAR LOVE",
+    description: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
+    bg: "FBF0F4",
+  },
+];
