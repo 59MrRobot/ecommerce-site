@@ -1,5 +1,5 @@
 import { Add, Remove } from '@material-ui/icons';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Announcement } from '../../components/Announcement';
 import { Footer } from '../../components/Footer';
@@ -125,6 +125,20 @@ const Button = styled.button`
 
 export const Product: React.FC = React.memo(
   () => {
+    const [amount, setAmount] = useState(1);
+
+    const handleAmount = (direction: string) => {
+      if (direction === 'remove') {
+        setAmount((prevState) => {
+           return (amount > 1) ? prevState - 1 : prevState - 0;
+        });
+      } else {
+        setAmount((prevState) => {
+          return prevState + 1;
+       });
+      }
+    }
+
     return (
       <Container>
         <Navbar />
@@ -170,9 +184,17 @@ export const Product: React.FC = React.memo(
 
             <AddContainer>
               <AmountContainer>
-                <Remove />
-                <Amount>1</Amount>
-                <Add />
+                <Remove
+                  onClick={() => handleAmount('remove')}
+                  style={{cursor:"pointer"}}
+                />
+
+                <Amount>{amount}</Amount>
+
+                <Add
+                  onClick={() => handleAmount('add')}
+                  style={{cursor:"pointer"}}
+                />
               </AmountContainer>
 
               <Button>ADD TO CART</Button>
