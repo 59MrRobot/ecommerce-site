@@ -15,7 +15,8 @@ const App: React.FC = () => {
       {/* <Product /> */}
       {/* <Cart /> */}
       {/* <Register /> */}
-      <Login />
+      {/* <Login /> */}
+      <Cart />
     </div>
   );
 }
