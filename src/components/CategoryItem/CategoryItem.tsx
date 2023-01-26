@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mobile, tablet } from '../../responsive';
+import { Link } from 'react-router-dom';
 
 interface Props {
   category: Category;
@@ -40,11 +41,17 @@ const Title = styled.h1`
 
 const Button = styled.button`
   border: none;
-  padding: 10px;
+  padding: 20px;
   background-color: #fff;
   color: #333;
   cursor: pointer;
   font-weight: 600;
+  transition: all 0.5s ease;
+
+  &:hover {
+    background-color: #333;
+    color: #fff;
+  }
 `
 
 export const CategoryItem: React.FC<Props> = React.memo(
@@ -54,7 +61,10 @@ export const CategoryItem: React.FC<Props> = React.memo(
         <Image src={category.img} />
         <Info>
           <Title>{category.title}</Title>
-          <Button>SHOP NOW</Button>
+
+          <Link to="products">
+            <Button>SHOP NOW</Button>
+          </Link>
         </Info>
       </Container>
     )

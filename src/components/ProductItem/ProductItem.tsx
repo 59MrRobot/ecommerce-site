@@ -61,6 +61,7 @@ const Icon = styled.div`
   align-items: center;
   margin: 10px;
   transition: all 0.5s ease;
+  color: #000;
 
   &:hover {
     background-color: #E9F5F5;

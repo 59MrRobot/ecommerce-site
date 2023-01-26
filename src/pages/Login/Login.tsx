@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mobile, tablet } from '../../responsive';
+import { Link } from "react-router-dom";
+import { CancelOutlined } from '@material-ui/icons';
 
 const Container = styled.div`
   width: 100vw;
@@ -22,6 +24,12 @@ const Wrapper = styled.div`
   background-color: #fff;
   ${mobile({ width: "75%" })}
   ${tablet({ width: "50%" })}
+`
+
+const Top = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 const Title = styled.h1`
@@ -51,7 +59,7 @@ const Button = styled.button`
   margin-bottom: 10px;
 `
 
-const Link = styled.a`
+const LinkText = styled.a`
   margin: 5px 0;
   font-size: 12px;
   text-decoration: underline;
@@ -63,7 +71,13 @@ export const Login: React.FC = React.memo(
     return (
       <Container>
         <Wrapper>
-          <Title>SIGN IN</Title>
+          <Top>
+            <Title>SIGN IN</Title>  
+
+            <Link to="/">
+              <CancelOutlined style={{color: "#000"}}/>
+            </Link>
+          </Top>
 
           <Form>
             <Input placeholder="Username"></Input>
@@ -72,8 +86,8 @@ export const Login: React.FC = React.memo(
 
             <Button>SIGN IN</Button>
 
-            <Link>DO YOU NOT REMEMBER YOUR PASSWORD?</Link>
-            <Link>CREATE A NEW ACCOUNT</Link>
+            <LinkText>DO YOU NOT REMEMBER YOUR PASSWORD?</LinkText>
+            <LinkText>CREATE A NEW ACCOUNT</LinkText>
           </Form>
         </Wrapper>
       </Container>

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Search, ShoppingCartOutlined } from '@material-ui/icons';
 import { Badge } from '@material-ui/core';
 import { mobile, tablet } from "../../responsive";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   /* height: 60px;
@@ -55,6 +56,7 @@ const Center = styled.div`
 const Logo = styled.h1`
   font-weight: bold;
   text-align: center;
+  color: #000;
   ${mobile({ fontSize: "24px" })}
   ${tablet({ fontSize: "24px" })}
 `
@@ -71,7 +73,7 @@ const Right = styled.div`
 
 const MenuItem = styled.div`
   font-size: 14px;
-  cursor: pointer;
+  color: #000;
   ${mobile({ fontSize: "12px" })}
   ${tablet({ fontSize: "12px" })}
 `
@@ -89,18 +91,27 @@ export const Navbar: React.FC = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>59MrRobot</Logo>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Logo>59MrRobot</Logo>
+          </Link>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
+          <Link to="register" style={{ textDecoration: "none" }}>
+            <MenuItem>REGISTER</MenuItem>
+          </Link>
 
-          <MenuItem>SIGN-IN</MenuItem>
+          <Link to="signin" style={{ textDecoration: "none" }}>
+            <MenuItem>SIGN-IN</MenuItem>
+          </Link>
+          
 
-          <MenuItem>
-            <Badge badgeContent={2} color="primary">
-              <ShoppingCartOutlined />
-            </Badge>
-          </MenuItem>
+          <Link to="cart">
+            <MenuItem>
+              <Badge badgeContent={2} color="primary">
+                <ShoppingCartOutlined />
+              </Badge>
+            </MenuItem>
+          </Link>
         </Right>
       </Wrapper>
     </Container>

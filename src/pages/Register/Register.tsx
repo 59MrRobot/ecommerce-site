@@ -1,6 +1,8 @@
+import { CancelOutlined } from '@material-ui/icons';
 import React from 'react';
 import styled from 'styled-components';
 import { mobile, tablet } from '../../responsive';
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
@@ -22,6 +24,12 @@ const Wrapper = styled.div`
   background-color: #fff;
   ${mobile({ width: "75%" })}
   ${tablet({ width: "80%" })}
+`
+
+const Top = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 const Title = styled.h1`
@@ -60,7 +68,13 @@ export const Register: React.FC = React.memo(
     return (
       <Container>
         <Wrapper>
-          <Title>CREATE AN ACCOUNT</Title>
+          <Top>
+            <Title>CREATE AN ACCOUNT</Title>  
+
+            <Link to="/">
+              <CancelOutlined style={{color: "#000"}}/>
+            </Link>
+          </Top>
 
           <Form>
             <Input placeholder="Name"></Input>

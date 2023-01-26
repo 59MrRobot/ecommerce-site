@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { popularProducts } from '../../data';
 import { ProductItem } from '../ProductItem';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -15,7 +16,9 @@ export const Products: React.FC = React.memo(
     return (
       <Container>
         {popularProducts.map((product: Product) => (
-          <ProductItem product={product} key={product.id} />
+          <Link to="/products/:product">
+            <ProductItem product={product} key={product.id} />
+          </Link>
         ))}
       </Container>
     )

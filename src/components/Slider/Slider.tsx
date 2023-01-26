@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { sliderItems } from '../../data';
 import { mobile, tablet } from '../../responsive';
+import { Link } from "react-router-dom";
 
 interface Props {
   direction?: string;
@@ -114,7 +115,9 @@ export const Slider: React.FC = () => {
 
               <Description>{item.description}</Description>
 
-              <Button>SHOW NOW</Button>
+              <Link to="products">
+                <Button>SHOW NOW</Button>
+              </Link>
             </InfoContainer>
           </Slide>
         ))}
