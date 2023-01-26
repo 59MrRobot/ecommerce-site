@@ -1,6 +1,7 @@
 import { Facebook, Instagram, MailOutlined, Phone, Pinterest, Room, Twitter } from '@material-ui/icons';
 import React from 'react';
 import styled from 'styled-components';
+import { mobile, tablet } from '../../responsive';
 
 interface Props {
   color: string;
@@ -9,6 +10,8 @@ interface Props {
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({ flexDirection: "column" })}
+  ${tablet({ flexDirection: "column" })}
 `
 
 const Left = styled.div`
@@ -16,14 +19,14 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  ${tablet({ alignItems: "center" })}
 `
 
-const Logo = styled.h1`
-  
-`
+const Logo = styled.h1``
 
 const Description = styled.p`
   margin: 20px 0;
+  ${tablet({ textAlign: "center", maxWidth: "500px" })}
 `
 
 const SocialContainer = styled.div`
@@ -40,11 +43,19 @@ const SocialIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
 `
 
 const Center = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({ display: "none" })}
+  ${tablet({ display: "none" })}
 `
 
 const Title = styled.h3`
@@ -68,6 +79,8 @@ const Right = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
+  ${mobile({ backgroundColor: "#fff8f8" })}
+  ${tablet({ backgroundColor: "#fff8f8", alignItems: "center" })}
 `
 
 const ContactItem = styled.div`

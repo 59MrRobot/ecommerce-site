@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { mobile, tablet } from '../../responsive';
 
 interface Props {
   category: Category;
@@ -16,6 +17,8 @@ const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  ${mobile({ height : "20vh" })}
+  ${tablet({ height : "30vh" })}
 `
 
 const Info = styled.div`

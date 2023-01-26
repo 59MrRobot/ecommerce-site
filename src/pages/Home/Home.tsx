@@ -6,7 +6,6 @@ import { Navbar } from '../../components/Navbar';
 import { Newsletter } from '../../components/Newsletter';
 import { Products } from '../../components/Products';
 import { Slider } from '../../components/Slider';
-import './Home.scss';
 
 export const Home: React.FC = React.memo(
   () => {

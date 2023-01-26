@@ -4,18 +4,19 @@ import styled from 'styled-components';
 import { Announcement } from '../../components/Announcement';
 import { Footer } from '../../components/Footer';
 import { Navbar } from '../../components/Navbar';
+import { mobile, tablet } from '../../responsive';
 
 interface Props {
   typed?: string;
   color?: string;
 }
 
-const Container = styled.div`
-  
-`
+const Container = styled.div``
 
 const Wrapper = styled.div`
   padding: 20px;
+  ${mobile({ padding: "10px" })}
+  ${tablet({ maxWidth: "500px", display: "flex", flexDirection: "column", alignItems: "center", margin: "0 auto" })}
 `
 
 const Title = styled.h1`
@@ -28,6 +29,7 @@ const Top = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  ${tablet({ width: "100%" })}
 `
 
 const TopButton = styled.button`
@@ -40,7 +42,8 @@ const TopButton = styled.button`
 `
 
 const TopTexts = styled.div`
-  
+  ${mobile({ display: "none" })}
+  ${tablet({ display: "none" })}
 `
 
 const TopText = styled.span`
@@ -52,6 +55,8 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({ flexDirection: "column" })}
+  ${tablet({ flexDirection: "column" })}
 `
 
 const Info = styled.div`
@@ -61,6 +66,8 @@ const Info = styled.div`
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({ flexDirection: "column" })}
+  ${tablet({ flexDirection: "column" })}
 `
 
 const ProductDetail = styled.div`
@@ -104,16 +111,22 @@ const ProductAmountContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  ${mobile({ justifyContent: "center" })}
+  ${tablet({ justifyContent: "center" })}
 `
 
 const ProductAmount = styled.span`
   font-size: 24px;
   margin: 5px;
+  ${mobile({ margin: "5px 15px" })}
+  ${tablet({ margin: "5px 20px" })}
 `
 
 const ProductPrice = styled.span`
   font-size: 30px;
   font-weight: 200;
+  ${mobile({ marginBottom: "20px", textAlign: "center" })}
+  ${tablet({ marginBottom: "25px", textAlign: "center" })}
 `
 
 const Hr = styled.hr`
@@ -128,6 +141,7 @@ const Summary = styled.div`
   border-radius: 10px;
   padding: 20px;
   height: 60vh;
+  ${tablet({ maxWidth: "450px", flex: 0 })}
 `
 
 const SummaryTitle = styled.h1`
@@ -142,13 +156,9 @@ const SummaryItem = styled.div`
   font-size: ${(props: Props) => props.typed === "total" && "24px"};
 `
 
-const SummaryItemText = styled.span`
+const SummaryItemText = styled.span``
 
-`
-
-const SummaryItemPrice = styled.span`
-
-`
+const SummaryItemPrice = styled.span``
 
 const Button = styled.button`
   width: 100%;
@@ -209,7 +219,9 @@ export const Cart: React.FC = React.memo(
                   <ProductPrice>$20.00</ProductPrice>
                 </PriceDetail>
               </Product>
+
               <Hr />
+              
               <Product>
                 <ProductDetail>
                   <Image src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png" />
@@ -248,7 +260,7 @@ export const Cart: React.FC = React.memo(
               </SummaryItem>
 
               <SummaryItem>
-                <SummaryItemText>Estimated SHipping</SummaryItemText>
+                <SummaryItemText>Estimated Shipping</SummaryItemText>
                 <SummaryItemPrice>$5.90</SummaryItemPrice>
               </SummaryItem>
 

@@ -5,34 +5,40 @@ import { Announcement } from '../../components/Announcement';
 import { Footer } from '../../components/Footer';
 import { Navbar } from '../../components/Navbar';
 import { Newsletter } from '../../components/Newsletter';
+import { mobile, tablet } from '../../responsive';
 
 interface Props {
   color: string;
 }
 
-const Container = styled.div`
-  
-`
+const Container = styled.div``
 
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
   justify-content: space-between;
+  ${mobile({ padding: "10px", flexDirection: "column" })}
+  ${tablet({ padding: "10px", flexDirection: "column", margin: "0 auto" })}
 `
 
 const ImageContainer = styled.div`
   flex: 1;
+  ${tablet({ margin: "0 auto" })}
 `
 
 const Image = styled.img`
   width: 100%;
   height: 90vh;
   object-fit: cover;
+  ${mobile({ height: "40vh" })}
+  ${tablet({ height: "30vh", maxWidth: "500px" })}
 `
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0 50px;
+  ${mobile({ padding: "10px" })}
+  ${tablet({ padding: "0 25px" })}
 `
 
 const Title = styled.h1`
@@ -54,6 +60,8 @@ const FilterContainer = styled.div`
   margin: 30px 0;
   display: flex;
   justify-content: space-between;
+  ${mobile({ width: "100%" })}
+  ${tablet({ width: "100%", flexDirection: "column", gap: "20px" })}
 `
 
 const Filter = styled.div`
@@ -64,6 +72,7 @@ const Filter = styled.div`
 const FilterTitle = styled.span`
   font-size: 20px;
   font-weight: 200;
+  margin-right: 10px;
 `
 
 const FilterColor = styled.div`
@@ -71,7 +80,7 @@ const FilterColor = styled.div`
   height: 30px;
   border-radius: 50%;
   background-color: ${(props: Props) => props.color};
-  margin: 0 5px;
+  margin-right: 10px;
   cursor: pointer;
 `
 
@@ -80,9 +89,7 @@ const FilterSize = styled.select`
   padding: 5px;
 `
 
-const FilterSizeOption = styled.option`
-
-`
+const FilterSizeOption = styled.option``
 
 const AddContainer = styled.div`
   width: 25%;
@@ -90,6 +97,8 @@ const AddContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  ${mobile({ width: "100%" })}
+  ${tablet({ width: "50vw" })}
 `
 
 const AmountContainer = styled.div`
@@ -121,6 +130,9 @@ const Button = styled.button`
     background-color: #008080 ;
     color: #fff;
   }
+
+  ${mobile({ marginTop: "20px" })}
+  ${tablet({ marginTop: "30px" })}
 `
 
 export const Product: React.FC = React.memo(
@@ -169,7 +181,7 @@ export const Product: React.FC = React.memo(
               </Filter>
 
               <Filter>
-                <FilterTitle>Size</FilterTitle>
+                <FilterTitle>Size:</FilterTitle>
 
                 <FilterSize>
                   <FilterSizeOption>XS</FilterSizeOption>

@@ -10,13 +10,12 @@ import { Register } from './pages/Register';
 const App: React.FC = () => {
   return (
     <div className="App">
-      {/* <Home /> */}
+      <Home />
       {/* <ProductList /> */}
       {/* <Product /> */}
-      {/* <Cart /> */}
       {/* <Register /> */}
       {/* <Login /> */}
-      <Cart />
+      {/* <Cart /> */}
     </div>
   );
 }

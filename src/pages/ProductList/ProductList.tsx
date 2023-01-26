@@ -5,10 +5,9 @@ import { Footer } from '../../components/Footer';
 import { Navbar } from '../../components/Navbar';
 import { Newsletter } from '../../components/Newsletter';
 import { Products } from '../../components/Products';
+import { mobile, tablet } from '../../responsive';
 
-const Container = styled.div`
-  
-`
+const Container = styled.div``
 
 const Title = styled.h1`
   margin: 20px;
@@ -18,26 +17,31 @@ const Title = styled.h1`
 const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  ${tablet({ maxWidth: "650px", margin: "0 auto" })}
 `
 
 const Filter = styled.div`
   margin: 20px;
+  ${mobile({ margin: "0 20px", display: "flex", flexDirection: "column" })}
+  ${tablet({ margin: "0 20px", display: "flex", flexDirection: "column" })}
 `
 
 const FilterText = styled.span`
   font-size: 20px;
   font-weight: 600;
   margin-right: 20px;
+  ${mobile({ marginRight: "0" })}
+  ${tablet({ marginRight: "0" })}
 `
 
 const Select = styled.select`
 padding: 10px;
 margin-right: 20px;
+${mobile({ margin: "10px 0" })}
+${tablet({ margin: "10px 0" })}
 `
 
-const Option = styled.option`
-
-`
+const Option = styled.option``
 
 export const ProductList: React.FC = React.memo(
   () => {
