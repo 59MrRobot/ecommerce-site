@@ -12,13 +12,14 @@ import { Register } from './pages/Register';
 import { Login } from './pages/Login';
 import { ProductList } from './pages/ProductList';
 import { Product } from './pages/Product';
+import { Home } from './pages/Home';
 
 const root = createRoot(document.getElementById('root')!);
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
     errorElement: <Error />,
   },
   {

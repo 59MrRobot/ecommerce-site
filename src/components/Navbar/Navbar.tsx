@@ -105,7 +105,7 @@ export const Navbar: React.FC = () => {
           </Link>
           
 
-          <Link to="cart">
+          <Link to="/cart">
             <MenuItem>
               <Badge badgeContent={2} color="primary">
                 <ShoppingCartOutlined />
