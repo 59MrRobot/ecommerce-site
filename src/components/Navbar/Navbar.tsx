@@ -96,11 +96,11 @@ export const Navbar: React.FC = () => {
           </Link>
         </Center>
         <Right>
-          <Link to="register" style={{ textDecoration: "none" }}>
+          <Link to="/register" style={{ textDecoration: "none" }}>
             <MenuItem>REGISTER</MenuItem>
           </Link>
 
-          <Link to="signin" style={{ textDecoration: "none" }}>
+          <Link to="/signin" style={{ textDecoration: "none" }}>
             <MenuItem>SIGN-IN</MenuItem>
           </Link>
           

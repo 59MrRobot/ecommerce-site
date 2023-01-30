@@ -12,8 +12,12 @@ I have built an e-commerce site..
 
 ## Screenshots:
 
-<!-- ![App screenshot - forecast accordion collapsed](weather-screenshot1.png)
-![App screenshot - forecast accordion expanded](weather-screenshot2.png) -->
+![App screenshot - homepage](home.PNG)
+![App screenshot - cart page](cart.PNG)
+![App screenshot - products page](products.PNG)
+![App screenshot - product page](product.PNG)
+![App screenshot - register page](register.PNG)
+![App screenshot - sign in page](signin.PNG)
 
 ## Technologies:
 
@@ -22,6 +26,7 @@ I have built an e-commerce site..
 - HTML
 - Styled Components
 - Material UI
+- React Router
 
 ## Setup:
 
