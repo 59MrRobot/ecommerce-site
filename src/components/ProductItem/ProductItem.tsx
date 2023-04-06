@@ -1,6 +1,7 @@
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@material-ui/icons';
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 interface Props {
   product: Product;
@@ -80,9 +81,11 @@ export const ProductItem: React.FC<Props> = React.memo(
             <ShoppingCartOutlined />
           </Icon>
 
-          <Icon>
-            <SearchOutlined />
-          </Icon>
+          <Link to="/products/:product">
+            <Icon>
+              <SearchOutlined />
+            </Icon>
+          </Link>
 
           <Icon>
             <FavoriteBorderOutlined />
