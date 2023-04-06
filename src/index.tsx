@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 import './index.scss';
@@ -15,30 +15,30 @@ import { Product } from './pages/Product';
 
 const root = createRoot(document.getElementById('root')!);
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <Error />,
   },
   {
-    path: "cart",
+    path: "/cart",
     element: <Cart />,
   },
   {
-    path: "register",
+    path: "/register",
     element: <Register />,
   },
   {
-    path: "signin",
+    path: "/signin",
     element: <Login />,
   },
   {
-    path: "products",
+    path: "/products",
     element: <ProductList />,
   },
   {
-    path: "products/:product",
+    path: "/products/:product",
     element: <Product />,
   },
 ]);
