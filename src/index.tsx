@@ -12,6 +12,9 @@ import { Register } from './pages/Register';
 import { Login } from './pages/Login';
 import { ProductList } from './pages/ProductList';
 import { Product } from './pages/Product';
+import { Provider } from 'react-redux';
+import { store, persistor } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const root = createRoot(document.getElementById('root')!);
 
@@ -34,7 +37,7 @@ const router = createHashRouter([
     element: <Login />,
   },
   {
-    path: "/products",
+    path: "/products/category/:category",
     element: <ProductList />,
   },
   {
@@ -45,6 +48,10 @@ const router = createHashRouter([
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );

@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { sliderItems } from '../../data';
 import { mobile, tablet } from '../../responsive';
 import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setSelectedCategory } from '../../redux/productsRedux';
 
 interface Props {
   direction?: string;
@@ -89,6 +91,7 @@ const Button = styled.button`
 
 export const Slider: React.FC = () => {
   const [slideIndex, setSlideIndex] = useState(0);
+  const dispatch = useDispatch();
 
   const handleClick = (direction: string) => {
     if (direction === 'left') {
@@ -115,8 +118,14 @@ export const Slider: React.FC = () => {
 
               <Description>{item.description}</Description>
 
-              <Link to="products">
-                <Button>SHOW NOW</Button>
+              <Link to={`/products/category/${item.name}`}>
+                <Button onClick={() => dispatch(setSelectedCategory({
+                  name: item.name,
+                  title: item.title,
+                }))}
+                >
+                  SHOW NOW
+                </Button>
               </Link>
             </InfoContainer>
           </Slide>

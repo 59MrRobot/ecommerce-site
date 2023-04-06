@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { mobile, tablet } from '../../responsive';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setSelectedCategory } from '../../redux/productsRedux';
 
 interface Props {
   category: Category;
@@ -56,14 +58,22 @@ const Button = styled.button`
 
 export const CategoryItem: React.FC<Props> = React.memo(
   ({ category }) => {
+    const dispatch = useDispatch();
+
     return (
       <Container>
         <Image src={category.img} />
         <Info>
           <Title>{category.title}</Title>
 
-          <Link to="products">
-            <Button>SHOP NOW</Button>
+          <Link to={`/products/category/${category.name}`}>
+            <Button onClick={() => dispatch(setSelectedCategory({
+                name: category.name,
+                title: category.title,
+              }))}
+            >
+              SHOP NOW
+            </Button>
           </Link>
         </Info>
       </Container>

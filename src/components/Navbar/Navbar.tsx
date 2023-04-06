@@ -5,10 +5,7 @@ import { Badge } from '@material-ui/core';
 import { mobile, tablet } from "../../responsive";
 import { Link } from "react-router-dom";
 
-const Container = styled.div`
-  /* height: 60px;
-  ${mobile({ height: "50px" })} */
-`;
+const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 10px 20px;
@@ -96,6 +93,15 @@ export const Navbar: React.FC = () => {
           </Link>
         </Center>
         <Right>
+          <a
+            href="https://59mrrobot.github.io/ecommerce-admin/"
+            target="_blank"
+            style={{ textDecoration: "none" }}
+            rel="noreferrer"
+          >
+            <MenuItem>ADMIN</MenuItem>
+          </a>
+
           <Link to="/register" style={{ textDecoration: "none" }}>
             <MenuItem>REGISTER</MenuItem>
           </Link>
@@ -107,7 +113,11 @@ export const Navbar: React.FC = () => {
 
           <Link to="/cart">
             <MenuItem>
-              <Badge badgeContent={2} color="primary">
+              <Badge 
+                badgeContent={2}
+                color="primary"
+                overlap="rectangular"
+              >
                 <ShoppingCartOutlined />
               </Badge>
             </MenuItem>

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { popularProducts } from '../../data';
 import { ProductItem } from '../ProductItem';
 
 const Container = styled.div`
@@ -10,14 +9,16 @@ const Container = styled.div`
   justify-content: space-between;
 `
 
-export const Products: React.FC = React.memo(
-  () => {
-    return (
-      <Container>
-        {popularProducts.map((product: Product) => (
-          <ProductItem product={product} key={product.id} />
-        ))}
-      </Container>
-    )
-  }
-)
+interface Props {
+  products: Product[];
+}
+
+export const Products: React.FC<Props> = ({ products }) => {
+  return (
+    <Container>
+      {products.map((product: Product) => (
+        <ProductItem product={product} key={product._id} />
+      ))}
+    </Container>
+  )
+}

@@ -75,7 +75,7 @@ export const ProductItem: React.FC<Props> = React.memo(
     return (
       <Container>
         <Circle />
-        <Image src={product.img} />
+        <Image src={product.image} />
         <Info>
           <Icon>
             <ShoppingCartOutlined />
