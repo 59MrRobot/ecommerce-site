@@ -81,7 +81,7 @@ export const ProductItem: React.FC<Props> = React.memo(
             <ShoppingCartOutlined />
           </Icon>
 
-          <Link to="/products/:product">
+          <Link to={`/product/:${product._id}`}>
             <Icon>
               <SearchOutlined />
             </Icon>

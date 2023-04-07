@@ -41,7 +41,7 @@ const router = createHashRouter([
     element: <ProductList />,
   },
   {
-    path: "/products/:product",
+    path: "/product/:id",
     element: <Product />,
   },
 ]);

@@ -1,5 +1,7 @@
 import { Add, Remove } from '@material-ui/icons';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { Announcement } from '../../components/Announcement';
 import { Footer } from '../../components/Footer';
@@ -138,6 +140,9 @@ const Button = styled.button`
 export const Product: React.FC = React.memo(
   () => {
     const [amount, setAmount] = useState(1);
+    const location = useLocation();
+    const id = location.pathname.split(":")[1];
+    const product: Product = useSelector((state: any) => state.product.products.find((item: Product) => item._id === id));
 
     const handleAmount = (direction: string) => {
       if (direction === 'remove') {
@@ -159,36 +164,34 @@ export const Product: React.FC = React.memo(
 
         <Wrapper>
           <ImageContainer>
-            <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+            <Image src={product.image} />
           </ImageContainer>
 
           <InfoContainer>
-            <Title>Denim Jumpsuit</Title>
+            <Title>{product.title}</Title>
 
             <Description>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo perferendis, mollitia laborum iste quis eligendi accusantium magnam possimus rerum culpa quam non illum labore nisi? Perspiciatis at necessitatibus labore modi.
+              {product.description}
             </Description>
 
-            <Price>$20.00</Price>
+            <Price>${product.price}</Price>
 
             <FilterContainer>
               <Filter>
                 <FilterTitle>Color:</FilterTitle>
 
-                <FilterColor color="black" />
-                <FilterColor color="darkblue" />
-                <FilterColor color="grey" />
+                {product.color.map(col => (
+                  <FilterColor color={col} key={col} />
+                ))}
               </Filter>
 
               <Filter>
                 <FilterTitle>Size:</FilterTitle>
 
                 <FilterSize>
-                  <FilterSizeOption>XS</FilterSizeOption>
-                  <FilterSizeOption>S</FilterSizeOption>
-                  <FilterSizeOption>M</FilterSizeOption>
-                  <FilterSizeOption>L</FilterSizeOption>
-                  <FilterSizeOption>XL</FilterSizeOption>
+                  {product.size.map(siz => (
+                    <FilterSizeOption key={siz}>{siz}</FilterSizeOption>
+                  ))}
                 </FilterSize>
               </Filter>
 
