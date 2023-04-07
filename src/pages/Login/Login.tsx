@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { mobile, tablet } from '../../responsive';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CancelOutlined } from '@material-ui/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/apiCalls';
 
 const Container = styled.div`
   width: 100vw;
@@ -62,12 +64,33 @@ const Button = styled.button`
 const LinkText = styled.a`
   margin: 5px 0;
   font-size: 12px;
+  color: #000;
   text-decoration: underline;
   cursor: pointer;
 `
 
 export const Login: React.FC = React.memo(
   () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+    const user = useSelector((state: any) => state.user);
+    const navigate = useNavigate();
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+
+      login(dispatch, { username, password });
+    }
+
+    useEffect(() => {
+      if (user.currentUser) {
+        navigate("/");
+      } else {
+        console.log(user.error);
+      }
+    }, [navigate, user]);
+
     return (
       <Container>
         <Wrapper>
@@ -79,15 +102,26 @@ export const Login: React.FC = React.memo(
             </Link>
           </Top>
 
-          <Form>
-            <Input placeholder="Username"></Input>
+          <Form onSubmit={handleSubmit}>
+            <Input
+              type="text"
+              placeholder="Username"
+              onChange={(event) => setUsername(event.target.value)}
+            ></Input>
 
-            <Input placeholder="Password"></Input>
+            <Input
+              type="password"
+              placeholder="Password"
+              onChange={(event) => setPassword(event.target.value)}
+            ></Input>
 
             <Button>SIGN IN</Button>
 
             <LinkText>DO YOU NOT REMEMBER YOUR PASSWORD?</LinkText>
-            <LinkText>CREATE A NEW ACCOUNT</LinkText>
+
+            <Link to="/register" style={{ textDecoration: "none" }}>
+              <LinkText>CREATE A NEW ACCOUNT</LinkText>
+            </Link>
           </Form>
         </Wrapper>
       </Container>

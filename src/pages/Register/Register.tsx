@@ -1,8 +1,10 @@
 import { CancelOutlined } from '@material-ui/icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { mobile, tablet } from '../../responsive';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { register } from '../../redux/apiCalls';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Container = styled.div`
   width: 100vw;
@@ -63,8 +65,64 @@ const Button = styled.button`
   cursor: pointer;
 `
 
+const ErrorMessage = styled.p`
+  margin-top: 4px;
+  font-size: 12px;
+  color: #ef0107;
+`
+
 export const Register: React.FC = React.memo(
   () => {
+    const [inputs, setInputs] = useState({});
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const dispatch = useDispatch();
+    const user = useSelector((state: any) => state.user);
+    const navigate = useNavigate();
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setInputs((prev) => ({
+        ...prev,
+        [event.target.name]: event.target.value,
+      }));
+    }
+
+    useEffect(() => {
+      if ((password && confirmPassword) && password === confirmPassword) {
+        setInputs((prev) => ({
+          ...prev,
+          password,
+        }));
+        setErrorMessage("");
+      } 
+      
+      if ((password && confirmPassword) && password !== confirmPassword) {
+        setErrorMessage("Passwords do not match.");
+      }
+    }, [confirmPassword, password])
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+
+      const finalUser = {
+        ...inputs,
+        fullName: `${firstName} ${lastName}`,
+      }
+
+      register(dispatch, finalUser);
+    }
+
+    useEffect(() => {
+      if (!user) {
+        navigate("/");
+      } else {
+        console.log(user.error)
+      }
+    }, [navigate, user]);
+
     return (
       <Container>
         <Wrapper>
@@ -76,18 +134,63 @@ export const Register: React.FC = React.memo(
             </Link>
           </Top>
 
-          <Form>
-            <Input placeholder="Name"></Input>
+          <Form onSubmit={handleSubmit}>
+            <Input 
+              type="text" 
+              name="name" 
+              placeholder="First Name"
+              onChange={(event) => setFirstName(event.target.value)}
+            ></Input>
 
-            <Input placeholder="Last Name"></Input>
+            <Input 
+              type="text" 
+              name="lastname" 
+              placeholder="Last Name"
+              onChange={(event) => setLastName(event.target.value)}
+            ></Input>
 
-            <Input placeholder="Username"></Input>
+            <Input
+              type="text"
+              name="username"
+              placeholder="Username"
+              onChange={handleChange}
+            ></Input>
 
-            <Input placeholder="Email"></Input>
+            <Input
+              type="text"
+              name="email"
+              placeholder="Email"
+              onChange={handleChange}
+            ></Input>
 
-            <Input placeholder="Password"></Input>
+            <Input
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={(event) => setPassword(event.target.value)}
+            ></Input>
 
-            <Input placeholder="Confirm Password"></Input>
+            <Input
+              type="password"
+              placeholder="Confirm Password"
+              onChange={(event) => setConfirmPassword(event.target.value)}
+            ></Input>
+
+            <Input
+              type="text"
+              name="country"
+              placeholder="Country"
+              onChange={handleChange}
+            ></Input>
+
+            <Input
+              type="text"
+              name="number"
+              placeholder="Number"
+              onChange={handleChange}
+            ></Input>
+
+            {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
 
             <Agreement>
               By creating an account, I consent to the processing of my personal data in accordance with the <b>PRIVACY POLICY</b>

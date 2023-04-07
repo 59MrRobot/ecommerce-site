@@ -7,6 +7,21 @@ interface Category {
   name: string,
 }
 
+interface User {
+  _id: string;
+  username: string;
+  email: string;
+  password: string;
+  isAdmin: boolean;
+  image: string;
+  status: string;
+  fullName: string;
+  country: string;
+  number: string;
+  createdAt: string;
+  accessToken: string;
+}
+
 interface Product {
   _id: string;
   title: string;
