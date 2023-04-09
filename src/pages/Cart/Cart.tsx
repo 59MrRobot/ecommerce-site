@@ -1,10 +1,13 @@
 import { Add, Remove } from '@material-ui/icons';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Announcement } from '../../components/Announcement';
 import { Footer } from '../../components/Footer';
 import { Navbar } from '../../components/Navbar';
+import { addOrder } from '../../redux/apiCalls';
+import { resetCart } from '../../redux/cartRedux';
 import { mobile, tablet } from '../../responsive';
 
 interface Props {
@@ -167,12 +170,39 @@ const Button = styled.button`
   background-color: #000;
   color: #fff;
   font-weight: 600;
+  cursor: pointer;
 `
 
 export const Cart: React.FC = React.memo(
   () => {
     const products: Product[] = useSelector((state: any) => state.product.products);
     const cart: Cart = useSelector((state: any) => state.cart.cart);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      const total = cart.products.reduce((sum, n) => sum + n.total, 0);
+
+      setTotalPrice(total);
+    }, [cart.products]);
+
+    const handleClick = () => {
+      const order = {
+        userId: cart._id,
+        products: cart.products.map(product => ({
+          productId: product.productId,
+          quantity: product.quantity,
+        })),
+        amount: totalPrice,
+        address: '2014 Forest Hills Drive',
+        status: "Pending",
+      }
+
+      addOrder(dispatch, order);
+      navigate("/");
+      dispatch(resetCart());
+    }
 
     return (
       <Container>
@@ -191,7 +221,12 @@ export const Cart: React.FC = React.memo(
               <TopText>Your Wishlist</TopText>
             </TopTexts>
 
-            <TopButton typed="filled">CHECKOUT NOW</TopButton>
+            <TopButton 
+              typed="filled" 
+              onClick={() => handleClick()}
+            >
+              CHECKOUT NOW
+            </TopButton>
           </Top>
 
           <Bottom>
@@ -201,7 +236,7 @@ export const Cart: React.FC = React.memo(
 
                 return (
                   <>
-                    <Product>
+                    <Product key={product.productId}>
                       <ProductDetail>
                         <Image src={prod?.image} />
 
@@ -211,7 +246,7 @@ export const Cart: React.FC = React.memo(
                           </ProductName>
 
                           <ProductId><b>ID:</b> {product.productId}</ProductId>
-                          <ProductColor color="black" />
+                          <ProductColor color={product.color} />
                           <ProductSize><b>Size:</b> {product.size}</ProductSize>
                         </Details>
                       </ProductDetail>
@@ -226,7 +261,7 @@ export const Cart: React.FC = React.memo(
                         </ProductAmountContainer>
 
                         <ProductPrice>
-                          ${prod && (prod.price * product.quantity * 100) / 100}
+                          ${product.total}
                         </ProductPrice>
                       </PriceDetail>
                     </Product>
@@ -242,7 +277,7 @@ export const Cart: React.FC = React.memo(
 
               <SummaryItem>
                 <SummaryItemText>Subtotal</SummaryItemText>
-                <SummaryItemPrice>$30.00</SummaryItemPrice>
+                <SummaryItemPrice>${totalPrice}</SummaryItemPrice>
               </SummaryItem>
 
               <SummaryItem>
@@ -257,10 +292,10 @@ export const Cart: React.FC = React.memo(
 
               <SummaryItem typed="total">
                 <SummaryItemText>Total</SummaryItemText>
-                <SummaryItemPrice>$30.00</SummaryItemPrice>
+                <SummaryItemPrice>${totalPrice}</SummaryItemPrice>
               </SummaryItem>
 
-              <Button>CHECKOUT NOW</Button>
+              <Button onClick={() => handleClick()}>CHECKOUT NOW</Button>
             </Summary>
           </Bottom>
         </Wrapper>

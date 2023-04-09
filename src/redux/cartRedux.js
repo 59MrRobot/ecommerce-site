@@ -42,7 +42,7 @@ const cartSlice = createSlice({
       state.error = true;
     },
     resetCart: (state) => {
-      state.cart = null;
+      state.cart.products = [];
       state.isFetching = false;
       state.error = false;
     }

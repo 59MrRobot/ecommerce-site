@@ -171,6 +171,7 @@ export const Product: React.FC = React.memo(
             quantity,
             size,
             color,
+            total: product.price * quantity,
           }],
         });
       } else {
@@ -181,6 +182,7 @@ export const Product: React.FC = React.memo(
           quantity,
           size,
           color,
+          total: product.price * quantity,
         });
 
         const req = {

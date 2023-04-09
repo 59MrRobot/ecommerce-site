@@ -42,5 +42,18 @@ interface Cart {
     quantity: number;
     size: string;
     color: string;
+    total: number;
   }[];
+}
+
+interface Order {
+  _id: string;
+  userId: string;
+  products: {
+    productId: string;
+    quantity: number;
+  }[];
+  amount: number;
+  address: string;
+  status: string;
 }

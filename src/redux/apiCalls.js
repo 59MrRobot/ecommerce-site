@@ -20,6 +20,11 @@ import {
   deleteCartSuccess,
   deleteCartFailure
 } from "./cartRedux";
+import { 
+  startorderProcess,
+  addOrderFailure,
+  addOrderSuccess,
+} from "./orderRedux";
 
 //USERS
 export const login = async (dispatch, user) => {
@@ -120,6 +125,20 @@ export const deleteCart = async (dispatch, id) => {
     dispatch(deleteCartSuccess(null));
   } catch (error) {
     dispatch(deleteCartFailure());
+    console.log(error);
+  }
+}
+
+//ORDERS
+export const addOrder = async (dispatch, order) => {
+  dispatch(startorderProcess());
+
+  try {
+    const response = await userRequest.post('/orders', order);
+
+    dispatch(addOrderSuccess(response.data));
+  } catch (error) {
+    dispatch(addOrderFailure());
     console.log(error);
   }
 }

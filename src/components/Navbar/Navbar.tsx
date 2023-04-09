@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/userRedux';
 import { deleteCart } from '../../redux/apiCalls';
+import { resetOrder } from '../../redux/orderRedux';
 
 const Container = styled.div``;
 
@@ -155,6 +156,7 @@ export const Navbar: React.FC = () => {
                     if (cart) {
                       deleteCart(dispatch, cart._id);
                     }
+                    dispatch(resetOrder());
                   }}/>
                 </MenuItem>
               </Tooltip>
