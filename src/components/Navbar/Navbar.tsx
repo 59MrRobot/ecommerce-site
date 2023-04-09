@@ -11,6 +11,7 @@ import { mobile, tablet } from "../../responsive";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/userRedux';
+import { deleteCart } from '../../redux/apiCalls';
 
 const Container = styled.div``;
 
@@ -88,6 +89,7 @@ const Welcome = styled.p`
 
 export const Navbar: React.FC = () => {
   const user: User = useSelector((state: any) => state.user.currentUser);
+  const cart: Cart = useSelector((state: any) => state.cart.cart);
   const dispatch = useDispatch();
 
   return (
@@ -144,18 +146,23 @@ export const Navbar: React.FC = () => {
           
           {user && (
             <>
+              <Welcome>Welcome, {user.fullName.split(' ')[0]}</Welcome>
+
               <Tooltip title="Logout">
                 <MenuItem>
-                  <LogoutIcon onClick={() => dispatch(logout())}/>
+                  <LogoutIcon onClick={() => {
+                    dispatch(logout());
+                    if (cart) {
+                      deleteCart(dispatch, cart._id);
+                    }
+                  }}/>
                 </MenuItem>
               </Tooltip>
-
-              <Welcome>Welcome, {user.fullName.split(' ')[0]}</Welcome>
 
               <Link to="/cart">
                 <MenuItem>
                   <Badge
-                    badgeContent={2}
+                    badgeContent={cart ? cart.products.length : 0}
                     color="primary"
                     overlap="rectangular"
                   >

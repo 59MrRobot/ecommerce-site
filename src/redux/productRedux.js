@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const productsSlice = createSlice({
-  name: "products",
+const productSlice = createSlice({
+  name: "product",
   initialState: {
     products: [],
     isFetching: false,
@@ -27,7 +27,7 @@ const productsSlice = createSlice({
     },
     setSelectedCategory: (state, action) => {
       state.category = action.payload;
-    }
+    },
   }
 });
 
@@ -36,6 +36,6 @@ export const {
   getProductsSuccess,
   getProductsFailure,
   setSelectedCategory,
-} = productsSlice.actions;
+} = productSlice.actions;
 
-export default productsSlice.reducer;
+export default productSlice.reducer;

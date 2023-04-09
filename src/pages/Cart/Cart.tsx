@@ -1,5 +1,6 @@
 import { Add, Remove } from '@material-ui/icons';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Announcement } from '../../components/Announcement';
 import { Footer } from '../../components/Footer';
@@ -170,6 +171,9 @@ const Button = styled.button`
 
 export const Cart: React.FC = React.memo(
   () => {
+    const products: Product[] = useSelector((state: any) => state.product.products);
+    const cart: Cart = useSelector((state: any) => state.cart.cart);
+
     return (
       <Container>
         <Navbar />
@@ -192,63 +196,45 @@ export const Cart: React.FC = React.memo(
 
           <Bottom>
             <Info>
-              <Product>
-                <ProductDetail>
-                  <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" />
+              {cart.products.map(product => {
+                const prod = products.find(a => a._id === product.productId);
 
-                  <Details>
-                    <ProductName>
-                      <b>Product:</b> JESSIE THUNDER SHOES
-                    </ProductName>
+                return (
+                  <>
+                    <Product>
+                      <ProductDetail>
+                        <Image src={prod?.image} />
 
-                    <ProductId><b>ID:</b> 9911616816</ProductId>
-                    <ProductColor color="black" />
-                    <ProductSize><b>Size:</b> 37.5</ProductSize>
-                  </Details>
-                </ProductDetail>
+                        <Details>
+                          <ProductName>
+                            <b>Product:</b> {prod?.title}
+                          </ProductName>
 
-                <PriceDetail>
-                  <ProductAmountContainer>
-                    <Remove />
+                          <ProductId><b>ID:</b> {product.productId}</ProductId>
+                          <ProductColor color="black" />
+                          <ProductSize><b>Size:</b> {product.size}</ProductSize>
+                        </Details>
+                      </ProductDetail>
 
-                    <ProductAmount>1</ProductAmount>
+                      <PriceDetail>
+                        <ProductAmountContainer>
+                          <Remove />
 
-                    <Add />
-                  </ProductAmountContainer>
+                          <ProductAmount>{product.quantity}</ProductAmount>
 
-                  <ProductPrice>$20.00</ProductPrice>
-                </PriceDetail>
-              </Product>
+                          <Add />
+                        </ProductAmountContainer>
 
-              <Hr />
-              
-              <Product>
-                <ProductDetail>
-                  <Image src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png" />
+                        <ProductPrice>
+                          ${prod && (prod.price * product.quantity * 100) / 100}
+                        </ProductPrice>
+                      </PriceDetail>
+                    </Product>
 
-                  <Details>
-                    <ProductName>
-                      <b>Product:</b> HAKURA T-SHIRT
-                    </ProductName>
-
-                    <ProductId><b>ID:</b> 9911616816</ProductId>
-                    <ProductColor color="gray" />
-                    <ProductSize><b>Size:</b> M</ProductSize>
-                  </Details>
-                </ProductDetail>
-
-                <PriceDetail>
-                  <ProductAmountContainer>
-                    <Remove />
-
-                    <ProductAmount>1</ProductAmount>
-
-                    <Add />
-                  </ProductAmountContainer>
-
-                  <ProductPrice>$10.00</ProductPrice>
-                </PriceDetail>
-              </Product>
+                    <Hr />
+                  </>
+                )
+              })}
             </Info>
 
             <Summary>

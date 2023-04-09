@@ -1,12 +1,13 @@
 import { Add, Remove } from '@material-ui/icons';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { Announcement } from '../../components/Announcement';
 import { Footer } from '../../components/Footer';
 import { Navbar } from '../../components/Navbar';
 import { Newsletter } from '../../components/Newsletter';
+import { addCart, updateCart } from '../../redux/apiCalls';
 import { mobile, tablet } from '../../responsive';
 
 interface Props {
@@ -139,20 +140,55 @@ const Button = styled.button`
 
 export const Product: React.FC = React.memo(
   () => {
-    const [amount, setAmount] = useState(1);
     const location = useLocation();
     const id = location.pathname.split(":")[1];
     const product: Product = useSelector((state: any) => state.product.products.find((item: Product) => item._id === id));
+    const [quantity, setQuantity] = useState(1);
+    const [size, setSize] = useState(product.size[0]);
+    const [color, setColor] = useState(product.color[0]);
+    const user: User = useSelector((state: any) => state.user.currentUser);
+    const cart: Cart = useSelector((state: any) => state.cart.cart);
+    const dispatch = useDispatch();
 
-    const handleAmount = (direction: string) => {
+    const handleQuantity = (direction: string) => {
       if (direction === 'remove') {
-        setAmount((prevState) => {
-           return (amount > 1) ? prevState - 1 : prevState - 0;
+        setQuantity((prevState) => {
+           return (quantity > 1) ? prevState - 1 : prevState - 0;
         });
       } else {
-        setAmount((prevState) => {
+        setQuantity((prevState) => {
           return prevState + 1;
        });
+      }
+    }
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      if (!cart) {
+        addCart(dispatch, {
+          userId: user._id,
+          products: [{
+            productId: product._id,
+            quantity,
+            size,
+            color,
+          }],
+        });
+      } else {
+        const newProducts = [...cart.products];
+
+        newProducts.push({
+          productId: product._id,
+          quantity,
+          size,
+          color,
+        });
+
+        const req = {
+          userId: user._id,
+          products: newProducts,
+        }
+
+        updateCart(dispatch, cart._id, req);
       }
     }
 
@@ -181,14 +217,18 @@ export const Product: React.FC = React.memo(
                 <FilterTitle>Color:</FilterTitle>
 
                 {product.color.map(col => (
-                  <FilterColor color={col} key={col} />
+                  <FilterColor
+                    color={col}
+                    key={col}
+                    onClick={() => setColor(col)}
+                  />
                 ))}
               </Filter>
 
               <Filter>
                 <FilterTitle>Size:</FilterTitle>
 
-                <FilterSize>
+                <FilterSize onChange={(event) => setSize(event.target.value)}>
                   {product.size.map(siz => (
                     <FilterSizeOption key={siz}>{siz}</FilterSizeOption>
                   ))}
@@ -200,19 +240,19 @@ export const Product: React.FC = React.memo(
             <AddContainer>
               <AmountContainer>
                 <Remove
-                  onClick={() => handleAmount('remove')}
+                  onClick={() => handleQuantity('remove')}
                   style={{cursor:"pointer"}}
                 />
 
-                <Amount>{amount}</Amount>
+                <Amount>{quantity}</Amount>
 
                 <Add
-                  onClick={() => handleAmount('add')}
+                  onClick={() => handleQuantity('add')}
                   style={{cursor:"pointer"}}
                 />
               </AmountContainer>
 
-              <Button>ADD TO CART</Button>
+              <Button onClick={handleClick}>ADD TO CART</Button>
             </AddContainer>
           </InfoContainer>
         </Wrapper>

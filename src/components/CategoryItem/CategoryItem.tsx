@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { mobile, tablet } from '../../responsive';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setSelectedCategory } from '../../redux/productsRedux';
+import { setSelectedCategory } from '../../redux/productRedux';
 
 interface Props {
   category: Category;

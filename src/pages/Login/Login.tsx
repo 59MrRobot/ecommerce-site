@@ -77,6 +77,8 @@ export const Login: React.FC = React.memo(
     const user = useSelector((state: any) => state.user);
     const navigate = useNavigate();
 
+    const { currentUser, error } = user;
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
 
@@ -84,12 +86,10 @@ export const Login: React.FC = React.memo(
     }
 
     useEffect(() => {
-      if (user.currentUser) {
+      if (currentUser) {
         navigate("/");
-      } else {
-        console.log(user.error);
       }
-    }, [navigate, user]);
+    }, [currentUser, dispatch, error, navigate]);
 
     return (
       <Container>

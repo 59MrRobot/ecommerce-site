@@ -33,3 +33,14 @@ interface Product {
   price: number;
   inStock: boolean;
 }
+
+interface Cart {
+  _id: string;
+  userId: string;
+  products: {
+    productId: string;
+    quantity: number;
+    size: string;
+    color: string;
+  }[];
+}
