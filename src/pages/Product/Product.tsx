@@ -38,6 +38,7 @@ const Image = styled.img`
 `
 
 const InfoContainer = styled.div`
+  position: relative;
   flex: 1;
   padding: 0 50px;
   ${mobile({ padding: "10px" })}

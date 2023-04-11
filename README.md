@@ -8,7 +8,7 @@ Access my site at https://59mrrobot.github.io/ecommerce-site/
 
 ## About The App:
 
-I have built an e-commerce site..
+I have built an e-commerce site that fetches information from [an api](https://github.com/59MrRobot/ecommerce-api) I created and displays it on the site. Users can log in/register, add items to their cart and then checkout, which will create create an order for them. This site is also linked to the [admin site](https://59mrrobot.github.io/ecommerce-admin/)
 
 ## Screenshots:
 
