@@ -135,8 +135,13 @@ const Button = styled.button`
     color: #fff;
   }
 
-  ${mobile({ marginTop: "20px" })}
-  ${tablet({ marginTop: "30px" })}
+  ${tablet({
+    marginTop: "30px",
+    backgroundColor: "#008080",
+    color: "#fff",
+    maxWidth: "250px"
+    })}
+  ${mobile({ marginTop: "20px", maxWidth: "180px" })}
 `
 
 export const Product: React.FC = React.memo(

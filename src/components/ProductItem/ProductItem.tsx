@@ -72,26 +72,40 @@ const Icon = styled.div`
 
 export const ProductItem: React.FC<Props> = React.memo(
   ({ product }) => {
-    return (
-      <Container>
-        <Circle />
-        <Image src={product.image} />
-        <Info>
-          <Icon>
-            <ShoppingCartOutlined />
-          </Icon>
+    const isScreenSizeDesktop = window.matchMedia("(min-width: 1024px)").matches;
 
-          <Link to={`/product/:${product._id}`}>
+    return isScreenSizeDesktop
+      ? (
+        <Container>
+          <Circle />
+
+          <Image src={product.image} />
+
+          <Info>
             <Icon>
-              <SearchOutlined />
+              <ShoppingCartOutlined />
             </Icon>
-          </Link>
 
-          <Icon>
-            <FavoriteBorderOutlined />
-          </Icon>
-        </Info>
-      </Container>
-    )
+            <Link to={`/product/:${product._id}`}>
+              <Icon>
+                <SearchOutlined />
+              </Icon>
+            </Link>
+
+            <Icon>
+              <FavoriteBorderOutlined />
+            </Icon>
+          </Info>
+        </Container>
+      )
+      : (
+        <Link to={`/product/:${product._id}`}>
+          <Container>
+            <Circle />
+
+            <Image src={product.image} />
+          </Container>
+        </Link>
+      )
   }
 )

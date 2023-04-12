@@ -2,7 +2,7 @@ import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { sliderItems } from '../../data';
-import { mobile, tablet } from '../../responsive';
+import { tablet } from '../../responsive';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setSelectedCategory } from '../../redux/productRedux';
@@ -19,7 +19,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
-  ${mobile({ display: "none" })}
+
   ${tablet({ display: "none" })}
 `
 
@@ -89,51 +89,53 @@ const Button = styled.button`
   cursor: pointer;
 `
 
-export const Slider: React.FC = () => {
-  const [slideIndex, setSlideIndex] = useState(0);
-  const dispatch = useDispatch();
+export const Slider: React.FC = React.memo(
+  () => {
+    const [slideIndex, setSlideIndex] = useState(0);
+    const dispatch = useDispatch();
 
-  const handleClick = (direction: string) => {
-    if (direction === 'left') {
-      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
-    } else {
-      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+    const handleClick = (direction: string) => {
+      if (direction === 'left') {
+        setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+      } else {
+        setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+      }
     }
+
+    return (
+      <Container>
+        <Arrow direction="left" onClick={() => handleClick('left')}>
+          <ArrowLeftOutlined />
+        </Arrow>
+        <Wrapper slideIndex={slideIndex}>
+          {sliderItems.map(item => (
+            <Slide bg={item.bg} key={item.id}>
+              <ImgContainer>
+                <Image src={item.img} />
+              </ImgContainer>
+
+              <InfoContainer>
+                <Title>{item.title}</Title>
+
+                <Description>{item.description}</Description>
+
+                <Link to={`/products/category/${item.name}`}>
+                  <Button onClick={() => dispatch(setSelectedCategory({
+                    name: item.name,
+                    title: item.title,
+                  }))}
+                  >
+                    SHOW NOW
+                  </Button>
+                </Link>
+              </InfoContainer>
+            </Slide>
+          ))}
+        </Wrapper>
+        <Arrow direction="right" onClick={() => handleClick('right')}>
+          <ArrowRightOutlined />
+        </Arrow>
+      </Container>
+    )
   }
-
-  return (
-    <Container>
-      <Arrow direction="left" onClick={() => handleClick('left')}>
-        <ArrowLeftOutlined />
-      </Arrow>
-      <Wrapper slideIndex={slideIndex}>
-        {sliderItems.map(item => (
-          <Slide bg={item.bg} key={item.id}>
-            <ImgContainer>
-              <Image src={item.img} />
-            </ImgContainer>
-
-            <InfoContainer>
-              <Title>{item.title}</Title>
-
-              <Description>{item.description}</Description>
-
-              <Link to={`/products/category/${item.name}`}>
-                <Button onClick={() => dispatch(setSelectedCategory({
-                  name: item.name,
-                  title: item.title,
-                }))}
-                >
-                  SHOW NOW
-                </Button>
-              </Link>
-            </InfoContainer>
-          </Slide>
-        ))}
-      </Wrapper>
-      <Arrow direction="right" onClick={() => handleClick('right')}>
-        <ArrowRightOutlined />
-      </Arrow>
-    </Container>
-  )
-}
+)

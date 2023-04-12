@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useRouteError } from "react-router-dom";
 import { mobile, tablet } from '../../responsive';
 import { Link } from "react-router-dom";
 
@@ -21,13 +20,16 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 25%;
   padding: 20px;
-  background-color: #fff;
-  ${mobile({ width: "75%" })}
-  ${tablet({ width: "50%" })}
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
   border-radius: 10px;
+  background-color: #fff;
+
+  ${tablet({ width: "50%" })}
+  ${mobile({ width: "75%" })}
 `
 
 const Title = styled.h1`
@@ -52,9 +54,6 @@ const LinkText = styled.a`
 
 export const Error: React.FC = React.memo(
   () => {
-    const error: any = useRouteError();
-    console.error(error);
-    
     return (
       <Container id="error-page">
         <Wrapper>
@@ -63,7 +62,7 @@ export const Error: React.FC = React.memo(
           <Text>Sorry, an unexpected error has occurred.</Text>
 
           <Text>
-            <i>{error.statusText || error.message}</i>
+            <i>Page not found</i>
           </Text>
 
           <Link to="/">

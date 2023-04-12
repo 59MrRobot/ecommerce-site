@@ -10,7 +10,7 @@ interface Props {
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
+
   ${tablet({ flexDirection: "column" })}
 `
 
@@ -19,6 +19,7 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+
   ${tablet({ alignItems: "center" })}
 `
 
@@ -26,6 +27,7 @@ const Logo = styled.h1``
 
 const Description = styled.p`
   margin: 20px 0;
+
   ${tablet({ textAlign: "center", maxWidth: "500px" })}
 `
 
@@ -54,7 +56,7 @@ const SocialIcon = styled.div`
 const Center = styled.div`
   flex: 1;
   padding: 20px;
-  ${mobile({ display: "none" })}
+
   ${tablet({ display: "none" })}
 `
 
@@ -79,6 +81,7 @@ const Right = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
+  
   ${mobile({ backgroundColor: "#fff8f8" })}
   ${tablet({ backgroundColor: "#fff8f8", alignItems: "center" })}
 `

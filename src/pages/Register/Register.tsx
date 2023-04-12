@@ -24,8 +24,9 @@ const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
   background-color: #fff;
-  ${mobile({ width: "75%" })}
-  ${tablet({ width: "80%" })}
+
+  ${tablet({ width: "65%" })};
+  ${mobile({ width: "90%" })};
 `
 
 const Top = styled.div`

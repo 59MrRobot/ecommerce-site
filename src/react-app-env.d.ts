@@ -37,13 +37,15 @@ interface Product {
 interface Cart {
   _id: string;
   userId: string;
-  products: {
-    productId: string;
-    quantity: number;
-    size: string;
-    color: string;
-    total: number;
-  }[];
+  products: CartProduct[];
+}
+
+interface CartProduct {
+  productId: string;
+  quantity: number;
+  size: string;
+  color: string;
+  total: number;
 }
 
 interface Order {

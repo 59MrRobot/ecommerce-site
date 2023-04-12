@@ -12,10 +12,12 @@ const Container = styled.div`
   font-weight: 500;
 `
 
-export const Announcement: React.FC = () => {
-  return (
-    <Container>
-      Super Deal! Free Shipping on Orders Over $50!
-    </Container>
-  )
-}
+export const Announcement: React.FC = React.memo(
+  () => {
+    return (
+      <Container>
+        Super Deal! Free Shipping on Orders Over $50!
+      </Container>
+    )
+  }
+)

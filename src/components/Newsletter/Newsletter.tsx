@@ -10,6 +10,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   ${tablet({ height: "45vh" })}
 `
 
@@ -22,6 +23,7 @@ const Description = styled.div`
   font-size: 24px;
   font-weight: 300;
   margin-bottom: 20px;
+
   ${mobile({ textAlign: "center" })}
 `
 
@@ -32,8 +34,9 @@ const InputContainer = styled.div`
   display: flex;
   justify-content: space-between;
   border: 1px solid lightgrey;
-  ${mobile({ width: "80%" })}
-  ${tablet({ width: "60%" })}
+  
+  ${tablet({ width: "60%" })};
+  ${mobile({ width: "80%" })};
 `
 
 const Input = styled.input`

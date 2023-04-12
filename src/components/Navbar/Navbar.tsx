@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import SearchIcon from '@mui/icons-material/Search';
 import AppRegistrationOutlinedIcon from '@mui/icons-material/AppRegistrationOutlined';
 import LoginIcon from '@mui/icons-material/Login';
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
@@ -21,50 +20,26 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${mobile({ padding: "10px 0" })}
-  ${tablet({ padding: "10px 0" })}
+
+  ${tablet({ padding: "0 20px" })}
+  ${mobile({ padding: "10px" })}
 `;
 
 const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-`;
 
-const Language = styled.span`
-  font-size: 14px;
-  cursor: pointer;
-  ${mobile({ display: "none" })}
-  ${tablet({ display: "none" })}
-`;
-
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-  ${mobile({ marginLeft: "10px" })}
-  ${tablet({ marginLeft: "10px" })}
-`;
-
-const Input = styled.input`
-  border: none;
-  ${mobile({ width: "50px" })}
-  ${tablet({ width: "75%" })}
-`;
-
-const Center = styled.div`
-  flex: 1;
-  text-align: center;
+  ${mobile({ flex: "none", justifyContent: "center", gap: "10px" })}
 `;
 
 const Logo = styled.h1`
   font-weight: 700;
   text-align: center;
   color: #000;
-  ${mobile({ fontSize: "24px" })}
-  ${tablet({ fontSize: "24px" })}
+
+  ${tablet({ fontSize: "26px" })}
+  ${mobile({ fontSize: "20px" })}
 `
 
 const Right = styled.div`
@@ -73,8 +48,9 @@ const Right = styled.div`
   align-items: center;
   justify-content: flex-end;
   gap: 25px;
-  ${mobile({ flex: 2, justifyContent: "center", gap: "10px" })}
-  ${tablet({ flex: 1, justifyContent: "center", gap: "10px" })}
+
+  ${tablet({ flex: 1, justifyContent: "right", gap: "10px" })}
+  ${mobile({ flex: 1, justifyContent: "right", gap: "10px" })}
 `
 
 const MenuItem = styled.div`
@@ -88,94 +64,86 @@ const MenuItem = styled.div`
 const Welcome = styled.p`
 `
 
-export const Navbar: React.FC = () => {
-  const user: User = useSelector((state: any) => state.user.currentUser);
-  const cart: Cart = useSelector((state: any) => state.cart.cart);
-  const dispatch = useDispatch();
+export const Navbar: React.FC = React.memo(
+  () => {
+    const user: User = useSelector((state: any) => state.user.currentUser);
+    const cart: Cart = useSelector((state: any) => state.cart.cart);
+    const dispatch = useDispatch();
 
-  return (
-    <Container>
-      <Wrapper>
-        <Left>
-          <Language>EN</Language>
+    return (
+      <Container>
+        <Wrapper>
+          <Left>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Logo>59MrRobot</Logo>
+            </Link>
+          </Left>
 
-          <SearchContainer>
-            <Input placeholder='Search' />
-
-            <SearchIcon style={{ color:"grey", fontSize:16 }}/>
-          </SearchContainer>
-        </Left>
-
-        <Center>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <Logo>59MrRobot</Logo>
-          </Link>
-        </Center>
-
-        <Right>
-          <a
-            href="https://59mrrobot.github.io/ecommerce-admin/"
-            target="_blank"
-            style={{ textDecoration: "none" }}
-            rel="noreferrer"
-          >
-            <Tooltip title="Admin Site">
-              <MenuItem>
-                <AdminPanelSettingsOutlinedIcon />
-              </MenuItem>
-            </Tooltip>
-          </a>
-          {!user && (
-            <>
-              <Link to="/register" style={{ textDecoration: "none" }}>
-                <Tooltip title="Register">
-                  <MenuItem>
-                    <AppRegistrationOutlinedIcon />
-                  </MenuItem>
-                </Tooltip>
-              </Link>
-
-              <Link to="/signin" style={{ textDecoration: "none" }}>
-                <Tooltip title="Login">
-                  <MenuItem>
-                    <LoginIcon />
-                  </MenuItem>
-                </Tooltip>
-              </Link>
-            </>
-          )}
-          
-          {user && (
-            <>
-              <Welcome>Welcome, {user.fullName.split(' ')[0]}</Welcome>
-
-              <Tooltip title="Logout">
+          <Right>
+            <a
+              href="https://59mrrobot.github.io/ecommerce-admin/"
+              target="_blank"
+              style={{ textDecoration: "none" }}
+              rel="noreferrer"
+            >
+              <Tooltip title="Admin Site">
                 <MenuItem>
-                  <LogoutIcon onClick={() => {
-                    dispatch(logout());
-                    if (cart) {
-                      deleteCart(dispatch, cart._id);
-                    }
-                    dispatch(resetOrder());
-                  }}/>
+                  <AdminPanelSettingsOutlinedIcon />
                 </MenuItem>
               </Tooltip>
+            </a>
+            {!user && (
+              <>
+                <Link to="/register" style={{ textDecoration: "none" }}>
+                  <Tooltip title="Register">
+                    <MenuItem>
+                      <AppRegistrationOutlinedIcon />
+                    </MenuItem>
+                  </Tooltip>
+                </Link>
 
-              <Link to="/cart">
-                <MenuItem>
-                  <Badge
-                    badgeContent={cart ? cart.products.length : 0}
-                    color="primary"
-                    overlap="rectangular"
-                  >
-                    <ShoppingCartOutlinedIcon />
-                  </Badge>
-                </MenuItem>
-              </Link>
-            </>
-          )}
-        </Right>
-      </Wrapper>
-    </Container>
-  )
-}
+                <Link to="/signin" style={{ textDecoration: "none" }}>
+                  <Tooltip title="Login">
+                    <MenuItem>
+                      <LoginIcon />
+                    </MenuItem>
+                  </Tooltip>
+                </Link>
+              </>
+            )}
+            
+            {user && (
+              <>
+                <Welcome>Welcome, {user.fullName.split(' ')[0]}</Welcome>
+
+                <Tooltip title="Logout">
+                  <MenuItem>
+                    <LogoutIcon onClick={() => {
+                      dispatch(logout());
+                      if (cart) {
+                        deleteCart(dispatch, cart._id);
+                      }
+                      dispatch(resetOrder());
+                    }}/>
+                  </MenuItem>
+                </Tooltip>
+
+                <Link to="/cart">
+                  <MenuItem>
+                    <Badge
+                      badgeContent={cart ? cart.products.length : 0}
+                      color="primary"
+                      overlap="rectangular"
+                    >
+                      <ShoppingCartOutlinedIcon />
+                    </Badge>
+                  </MenuItem>
+                </Link>
+              </>
+            )}
+          </Right>
+        </Wrapper>
+      </Container>
+    )
+  }
+)
