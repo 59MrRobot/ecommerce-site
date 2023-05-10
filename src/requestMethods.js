@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = "https://better-bee-bikini.cyclic.app/api/";
+const BASE_URL = "https://coffee-scallop-tam.cyclic.app/api/";
 
 export const publicRequest = axios.create({
   baseURL: BASE_URL,
