@@ -1,17 +1,46 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { sliderItems } from '../../data';
 import { tablet } from '../../responsive';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setSelectedCategory } from '../../redux/productRedux';
+import SliderImage1 from './slider-image-1.webp';
+import SliderImage2 from './slider-image-2.webp';
+import SliderImage3 from './slider-image-3.webp';
 
 interface Props {
   direction?: string;
   bg?: string;
   slideIndex?: number;
 }
+
+const sliderItems = [
+  {
+    id: 1,
+    img: SliderImage1,
+    title: "SHOES SALE",
+    description: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
+    bg: "F5FAFD",
+    name: "shoes",
+  },
+  {
+    id: 2,
+    img: SliderImage2,
+    title: "T-SHIRT COLLECTION",
+    description: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
+    bg: "FCF1ED",
+    name: "t-shirts",
+  },
+  {
+    id: 3,
+    img: SliderImage3,
+    title: "SHIRTS LOVE",
+    description: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
+    bg: "FBF0F4",
+    name: "shirts",
+  },
+];
 
 const Container = styled.div`
   width: 100%;

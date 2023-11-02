@@ -1,8 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
-import { categories } from '../../data';
 import { tablet } from '../../responsive';
 import { CategoryItem } from '../CategoryItem';
+import Category1 from './category-1.webp';
+import Category2 from './category-2.webp';
+import Category3 from './category-3.webp';
+
+const categories = [
+  {
+    id: 1,
+    img: Category1,
+    title: "WOMEN STYLE!",
+    name: "women",
+  },
+  {
+    id: 2,
+    img: Category2,
+    title: "MEN LOVE",
+    name: "men",
+  },
+  {
+    id: 3,
+    img: Category3,
+    title: "LIGHT COATS",
+    name: "coats",
+  },
+];
 
 const Container = styled.div`
   display: flex;

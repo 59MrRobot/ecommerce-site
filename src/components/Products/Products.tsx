@@ -15,7 +15,7 @@ const Container = styled.div`
   padding: 20px;
   flex-wrap: wrap;
   /* justify-content: space-between; */
-  justify-content: ${(props: Prop) => props.mobile === "true" ? "center" : "space-between"};
+  justify-content: ${(props: Prop) => props.mobile === "true" ? "center" : "center"};
 `
 
 export const Products: React.FC<Props> = React.memo(
